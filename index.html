@@ -22,184 +22,46 @@
   --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 }
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  -webkit-tap-highlight-color: transparent;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 body {
   background-color: var(--bg-dark);
   background-image: radial-gradient(circle at 50% 0%, #1a1e24 0%, var(--bg-dark) 50%);
-  color: var(--text-main);
-  font-family: var(--font-main);
-  line-height: 1.5;
-  padding: 12px;
-  padding-bottom: 80px;
-  min-height: 100vh;
+  color: var(--text-main); font-family: var(--font-main); line-height: 1.5;
+  padding: 12px; padding-bottom: 80px; min-height: 100vh;
 }
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 600px;
-  margin: 0 auto;
-}
+.container { display: flex; flex-direction: column; gap: 16px; max-width: 600px; margin: 0 auto; }
 .card {
-  background: var(--bg-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  background: var(--bg-card); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border); border-radius: 16px; padding: 16px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
-h2 {
-  font-size: 1rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.text-green { color: var(--green) !important; }
-.text-red { color: var(--red) !important; }
-.text-yellow { color: var(--yellow) !important; }
-.font-mono { font-family: var(--font-mono); }
-.text-sm { font-size: 0.85rem; color: var(--text-muted); }
-.text-center { text-align: center; }
-.badge {
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: bold;
-}
-.badge-green { background: var(--green-dim); color: var(--green); }
-.badge-red { background: var(--red-dim); color: var(--red); }
+h2 { font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+.text-green { color: var(--green) !important; } .text-red { color: var(--red) !important; } .text-yellow { color: var(--yellow) !important; }
+.font-mono { font-family: var(--font-mono); } .text-sm { font-size: 0.85rem; color: var(--text-muted); } .text-center { text-align: center; }
+.badge { padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; }
+.badge-green { background: var(--green-dim); color: var(--green); } .badge-red { background: var(--red-dim); color: var(--red); }
 .row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-input, select, textarea {
-  width: 100%;
-  background: var(--bg-input);
-  border: 1px solid var(--border);
-  color: var(--text-main);
-  padding: 12px;
-  border-radius: 8px;
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  margin-top: 4px;
-  outline: none;
-  transition: border 0.2s;
-}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; } .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+input, select, textarea { width: 100%; background: var(--bg-input); border: 1px solid var(--border); color: var(--text-main); padding: 12px; border-radius: 8px; font-family: var(--font-mono); font-size: 1rem; margin-top: 4px; outline: none; transition: border 0.2s; }
 input:focus, select:focus { border-color: var(--blue); }
-label { font-size: 0.85rem; color: var(--text-muted); }
-.input-group { margin-bottom: 12px; }
-button {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: opacity 0.2s, transform 0.1s;
-  font-family: var(--font-main);
-}
+label { font-size: 0.85rem; color: var(--text-muted); } .input-group { margin-bottom: 12px; }
+button { width: 100%; padding: 14px; border: none; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; transition: opacity 0.2s, transform 0.1s; font-family: var(--font-main); }
 button:active { transform: scale(0.98); }
-.btn-primary { background: var(--blue); color: white; }
-.btn-green { background: var(--green); color: #000; }
-.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); }
-.btn-sm { padding: 8px; font-size: 0.85rem; }
-.price-display {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin: 8px 0;
-  text-shadow: 0 0 20px rgba(255,255,255,0.1);
-}
-.progress-container {
-  width: 100%;
-  height: 8px;
-  background: var(--bg-input);
-  border-radius: 4px;
-  overflow: hidden;
-  margin: 12px 0;
-}
-.progress-bar {
-  height: 100%;
-  transition: width 0.5s ease-in-out, background-color 0.5s;
-}
-.score-circle {
-  width: 80px; height: 80px;
-  border-radius: 50%;
-  display: flex; justify-content: center; align-items: center;
-  font-size: 2rem; font-weight: bold;
-  margin: 0 auto 12px;
-  border: 4px solid var(--border);
-  font-family: var(--font-mono);
-}
-.mini-card {
-  background: rgba(0,0,0,0.2);
-  padding: 10px;
-  border-radius: 8px;
-  text-align: center;
-  border: 1px solid var(--border);
-}
+.btn-primary { background: var(--blue); color: white; } .btn-green { background: var(--green); color: #000; } .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); } .btn-sm { padding: 8px; font-size: 0.85rem; }
+.price-display { font-size: 2.5rem; font-weight: 700; margin: 8px 0; text-shadow: 0 0 20px rgba(255,255,255,0.1); }
+.progress-container { width: 100%; height: 8px; background: var(--bg-input); border-radius: 4px; overflow: hidden; margin: 12px 0; }
+.progress-bar { height: 100%; transition: width 0.5s ease-in-out, background-color 0.5s; }
+.score-circle { width: 80px; height: 80px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2rem; font-weight: bold; margin: 0 auto 12px; border: 4px solid var(--border); font-family: var(--font-mono); }
+.mini-card { background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; text-align: center; border: 1px solid var(--border); }
 .mini-card .val { font-size: 1.2rem; font-weight: bold; font-family: var(--font-mono); margin-top: 4px;}
-.history-card {
-  background: rgba(0,0,0,0.2);
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--border);
-  border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 12px;
-  font-size: 0.9rem;
-}
-.history-card.win { border-left-color: var(--green); }
-.history-card.loss { border-left-color: var(--red); }
+.history-card { background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-left: 4px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 12px; font-size: 0.9rem; }
+.history-card.win { border-left-color: var(--green); } .history-card.loss { border-left-color: var(--red); }
 .history-card-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: bold; }
-.loader {
-  display: inline-block;
-  width: 14px; height: 14px;
-  border: 2px solid var(--text-muted);
-  border-radius: 50%;
-  border-top-color: var(--blue);
-  animation: spin 1s ease-in-out infinite;
-}
+.loader { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--text-muted); border-radius: 50%; border-top-color: var(--blue); animation: spin 1s ease-in-out infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.fab {
-  position: fixed;
-  bottom: 24px; right: 24px;
-  width: 56px; height: 56px;
-  border-radius: 50%;
-  background: var(--blue);
-  color: white;
-  display: flex; justify-content: center; align-items: center;
-  font-size: 24px;
-  box-shadow: 0 4px 12px rgba(41, 98, 255, 0.4);
-  cursor: pointer;
-  z-index: 1000;
-  border: none;
-}
-.ai-panel {
-  background: rgba(0,0,0,0.3);
-  border-radius: 8px;
-  padding: 12px;
-  font-size: 0.9rem;
-  white-space: pre-wrap;
-  color: #d1d5db;
-  border: 1px dashed var(--border);
-  min-height: 100px;
-}
-.emotion-bar {
-  display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
-}
-.emotion-label { width: 60px; font-size: 0.8rem; }
-.emotion-track { flex: 1; height: 8px; background: var(--bg-input); border-radius: 4px; overflow: hidden; }
-.emotion-fill { height: 100%; background: var(--blue); }
-.emotion-val { width: 40px; font-size: 0.8rem; text-align: right; font-family: var(--font-mono);}
+.fab { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; border-radius: 50%; background: var(--blue); color: white; display: flex; justify-content: center; align-items: center; font-size: 24px; box-shadow: 0 4px 12px rgba(41, 98, 255, 0.4); cursor: pointer; z-index: 1000; border: none; }
+.ai-panel { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 12px; font-size: 0.9rem; white-space: pre-wrap; color: #d1d5db; border: 1px dashed var(--border); min-height: 100px; }
+.emotion-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.emotion-label { width: 60px; font-size: 0.8rem; } .emotion-track { flex: 1; height: 8px; background: var(--bg-input); border-radius: 4px; overflow: hidden; } .emotion-fill { height: 100%; background: var(--blue); } .emotion-val { width: 40px; font-size: 0.8rem; text-align: right; font-family: var(--font-mono);}
 </style>
 </head>
 <body>
@@ -219,35 +81,18 @@ button:active { transform: scale(0.98); }
   <h2>Smart Decision Panel</h2>
   <div class="score-circle" id="ds-score">--</div>
   <div class="text-center" style="font-weight: bold; font-size: 1.2rem;" id="ds-status">ANALYZING...</div>
-  <div class="progress-container">
-    <div class="progress-bar" id="ds-bar" style="width: 0%; background: var(--text-muted);"></div>
-  </div>
+  <div class="progress-container"><div class="progress-bar" id="ds-bar" style="width: 0%; background: var(--text-muted);"></div></div>
   <div class="text-sm" id="ds-reasons" style="margin-top: 12px; text-align: center;"></div>
 </div>
 
 <div class="card">
   <h2>Market Context</h2>
   <div class="grid-2">
-    <div class="mini-card">
-      <div class="text-sm">4H Trend</div>
-      <div class="val" id="trend-4h">--</div>
-    </div>
-    <div class="mini-card">
-      <div class="text-sm">1H Trend</div>
-      <div class="val" id="trend-1h">--</div>
-    </div>
-    <div class="mini-card">
-      <div class="text-sm">15m Trend</div>
-      <div class="val" id="trend-15m">--</div>
-    </div>
-    <div class="mini-card">
-      <div class="text-sm">5m Trend</div>
-      <div class="val" id="trend-5m">--</div>
-    </div>
-    <div class="mini-card" style="grid-column: span 2;">
-      <div class="text-sm">Fear & Greed Index</div>
-      <div class="val" id="fng-val">--</div>
-    </div>
+    <div class="mini-card"><div class="text-sm">4H Trend</div><div class="val" id="trend-4h">--</div></div>
+    <div class="mini-card"><div class="text-sm">1H Trend</div><div class="val" id="trend-1h">--</div></div>
+    <div class="mini-card"><div class="text-sm">15m Trend</div><div class="val" id="trend-15m">--</div></div>
+    <div class="mini-card"><div class="text-sm">5m Trend</div><div class="val" id="trend-5m">--</div></div>
+    <div class="mini-card" style="grid-column: span 2;"><div class="text-sm">Fear & Greed Index</div><div class="val" id="fng-val">--</div></div>
   </div>
 </div>
 
@@ -301,23 +146,11 @@ button:active { transform: scale(0.98); }
 
   <div style="border-top: 1px solid var(--border); padding-top: 12px; margin-top: 12px;">
     <div class="grid-2">
-      <div class="input-group">
-        <label>Modal (USDT)</label>
-        <input type="number" id="t-capital" placeholder="Misal: 100" oninput="evaluateSetup()">
-      </div>
-      <div class="input-group">
-        <label>Risk per Trade (%)</label>
-        <input type="number" id="t-risk-pct" value="1" oninput="evaluateSetup()">
-      </div>
+      <div class="input-group"><label>Modal (USDT)</label><input type="number" id="t-capital" placeholder="Misal: 100" oninput="evaluateSetup()"></div>
+      <div class="input-group"><label>Risk per Trade (%)</label><input type="number" id="t-risk-pct" value="1" oninput="evaluateSetup()"></div>
     </div>
-    <div class="row text-sm font-mono">
-      <span>Max Kerugian (Risk):</span>
-      <span id="mm-risk-nom" class="text-red">$0.00</span>
-    </div>
-    <div class="row text-sm font-mono">
-      <span>Position Size (USDT):</span>
-      <span id="mm-pos-size" class="text-green">$0.00</span>
-    </div>
+    <div class="row text-sm font-mono"><span>Max Kerugian (Risk):</span><span id="mm-risk-nom" class="text-red">$0.00</span></div>
+    <div class="row text-sm font-mono"><span>Position Size (USDT):</span><span id="mm-pos-size" class="text-green">$0.00</span></div>
   </div>
 
   <button class="btn-primary" style="margin-top: 16px;" onclick="checkEntryPermission()">Bolehkah Saya Entry?</button>
@@ -328,16 +161,11 @@ button:active { transform: scale(0.98); }
       <div class="input-group">
         <label>Outcome</label>
         <select id="t-outcome">
-          <option value="Pending">Pending (Open)</option>
-          <option value="Win">Win</option>
-          <option value="Loss">Loss</option>
-          <option value="BEP">BEP</option>
+          <option value="Pending">Pending (Open)</option><option value="Win">Win</option>
+          <option value="Loss">Loss</option><option value="BEP">BEP</option>
         </select>
       </div>
-      <div class="input-group">
-        <label>Real PnL (%)</label>
-        <input type="number" id="t-pnl" placeholder="Misal: 5.5">
-      </div>
+      <div class="input-group"><label>Real PnL (%)</label><input type="number" id="t-pnl" placeholder="Misal: 5.5"></div>
     </div>
     <button class="btn-green" onclick="saveTrade()">Simpan ke Jurnal</button>
   </div>
@@ -367,38 +195,40 @@ button:active { transform: scale(0.98); }
   </div>
 </div>
 
-<div class="card">
-  <h2>Win Rate Berdasarkan Emosi</h2>
-  <div id="emotion-stats-container">
-  </div>
+<div class="card"><h2>Win Rate Berdasarkan Emosi</h2><div id="emotion-stats-container"></div></div>
+<div class="card"><h2>Riwayat Jurnal</h2><div id="history-container"></div></div>
 </div>
-
-<div class="card">
-  <h2>Riwayat Jurnal</h2>
-  <div id="history-container">
-  </div>
-</div>
-</div>
-
 <button class="fab" onclick="document.getElementById('trade-form-section').scrollIntoView({behavior: 'smooth'})">+</button>
 
 <script>
-// --- KODE BARU LOGIKA FETCH BINANCE ---
-const BINANCE_BASE = 'https://api.binance.com/api/v3';
-
+// --- KODE SUPER FETCH BINANCE (ANTI BLOKIR ISP) ---
 async function fetchBinance(path) {
-  try {
-    const res = await fetch(`${BINANCE_BASE}${path}`);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    return await res.json();
-  } catch (e) {
-    console.warn("Binance direct gagal, coba proxy...", e.message);
-    // fallback proxy
-    const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(BINANCE_BASE + path)}`;
-    const res = await fetch(proxyUrl);
-    if (!res.ok) throw new Error("Proxy juga gagal");
-    return await res.json();
+  const fullUrl = `https://api.binance.com/api/v3${path}`;
+  const encodedUrl = encodeURIComponent(fullUrl);
+  
+  // Daftar urutan server yang bakal dicoba dari atas ke bawah
+  const endpoints = [
+    `https://api1.binance.com/api/v3${path}`, // Server cadangan resmi binance 1
+    `https://api2.binance.com/api/v3${path}`, // Server cadangan resmi binance 2
+    `https://api3.binance.com/api/v3${path}`, // Server cadangan resmi binance 3
+    `https://api.allorigins.win/raw?url=${encodedUrl}`, // Proxy 1
+    `https://thingproxy.freeboard.io/fetch/${fullUrl}`, // Proxy 2
+    `https://corsproxy.io/?${encodedUrl}` // Proxy 3
+  ];
+
+  for (const url of endpoints) {
+    try {
+      const res = await fetch(url);
+      if (res.ok) {
+        return await res.json();
+      }
+    } catch (e) {
+      console.warn(`Gagal di: ${url}. Lanjut ke jalur berikutnya...`);
+      // Jalan terus ke url berikutnya kalau gagal
+    }
   }
+  
+  throw new Error("Semua jalur dan proxy mati diblokir.");
 }
 
 // --- MAIN APP LOGIC ---
@@ -410,7 +240,6 @@ let trades = JSON.parse(localStorage.getItem('btc_mentor_trades')) || [];
 
 async function fetchTicker() {
   try {
-    // Dipanggil menggunakan fungsi fetchBinance baru
     const data = await fetchBinance('/ticker/24hr?symbol=BTCUSDT');
     
     btc.price = parseFloat(data.lastPrice);
@@ -435,7 +264,7 @@ async function fetchTicker() {
     evaluateSetup();
   } catch (e) { 
     console.error(e); 
-    document.getElementById('btc-price').innerText = "NaN (VPN Needed)";
+    document.getElementById('btc-price').innerText = "NaN (Server Down)";
     document.getElementById('btc-price').className = "price-display font-mono text-red text-sm";
   }
 }
@@ -451,7 +280,6 @@ function calcEMA(data, period) {
 
 async function fetchTrend(interval) {
   try {
-    // Dipanggil menggunakan fungsi fetchBinance baru
     const data = await fetchBinance(`/klines?symbol=BTCUSDT&interval=${interval}&limit=250`);
     const closes = data.map(d => parseFloat(d[4]));
     const ema50 = calcEMA(closes, 50);
@@ -490,9 +318,7 @@ async function fetchFnG() {
     if(fng.value <= 25) el.className = 'val text-red';
     else if(fng.value >= 75) el.className = 'val text-green';
     else el.className = 'val text-yellow';
-  } catch (e) { 
-    console.error("FNG Error:", e); 
-  }
+  } catch (e) { console.error("FNG Error:", e); }
 }
 
 function updateSmartDecision() {
@@ -514,25 +340,18 @@ function updateSmartDecision() {
   const bar = document.getElementById('ds-bar');
   const rEl = document.getElementById('ds-reasons');
 
-  circ.innerText = score;
-  bar.style.width = `${score}%`;
+  circ.innerText = score; bar.style.width = `${score}%`;
   rEl.innerText = reasons.length ? reasons.join(' • ') : 'Market Sideways';
 
   if(score >= 70) {
-    stat.innerText = '🟢 LONG BIAS';
-    stat.className = 'text-center text-green';
-    bar.style.backgroundColor = 'var(--green)';
-    circ.style.borderColor = 'var(--green)';
+    stat.innerText = '🟢 LONG BIAS'; stat.className = 'text-center text-green';
+    bar.style.backgroundColor = 'var(--green)'; circ.style.borderColor = 'var(--green)';
   } else if(score <= 30) {
-    stat.innerText = '🔴 SHORT BIAS';
-    stat.className = 'text-center text-red';
-    bar.style.backgroundColor = 'var(--red)';
-    circ.style.borderColor = 'var(--red)';
+    stat.innerText = '🔴 SHORT BIAS'; stat.className = 'text-center text-red';
+    bar.style.backgroundColor = 'var(--red)'; circ.style.borderColor = 'var(--red)';
   } else {
-    stat.innerText = '🟡 NEUTRAL / WAIT';
-    stat.className = 'text-center text-yellow';
-    bar.style.backgroundColor = 'var(--yellow)';
-    circ.style.borderColor = 'var(--yellow)';
+    stat.innerText = '🟡 NEUTRAL / WAIT'; stat.className = 'text-center text-yellow';
+    bar.style.backgroundColor = 'var(--yellow)'; circ.style.borderColor = 'var(--yellow)';
   }
 }
 
@@ -545,51 +364,32 @@ function useCurrentPrice() {
 
 function getTradeInputs() {
   return {
-    dir: document.getElementById('t-dir').value,
-    entry: parseFloat(document.getElementById('t-entry').value),
-    sl: parseFloat(document.getElementById('t-sl').value),
-    tp: parseFloat(document.getElementById('t-tp').value),
-    cap: parseFloat(document.getElementById('t-capital').value),
-    riskPct: parseFloat(document.getElementById('t-risk-pct').value)
+    dir: document.getElementById('t-dir').value, entry: parseFloat(document.getElementById('t-entry').value),
+    sl: parseFloat(document.getElementById('t-sl').value), tp: parseFloat(document.getElementById('t-tp').value),
+    cap: parseFloat(document.getElementById('t-capital').value), riskPct: parseFloat(document.getElementById('t-risk-pct').value)
   };
 }
 
 function evaluateSetup() {
-  const i = getTradeInputs();
-  let rrRatio = 0;
-
+  const i = getTradeInputs(); let rrRatio = 0;
   if(i.entry > 0 && i.sl > 0 && i.tp > 0) {
     let risk = 0, reward = 0;
-    if(i.dir === 'LONG') {
-      risk = i.entry - i.sl;
-      reward = i.tp - i.entry;
-    } else {
-      risk = i.sl - i.entry;
-      reward = i.entry - i.tp;
-    }
-
-    const rrEl = document.getElementById('rr-display');
-    const warnEl = document.getElementById('rr-warning');
-
+    if(i.dir === 'LONG') { risk = i.entry - i.sl; reward = i.tp - i.entry; } 
+    else { risk = i.sl - i.entry; reward = i.entry - i.tp; }
+    
+    const rrEl = document.getElementById('rr-display'); const warnEl = document.getElementById('rr-warning');
     if(risk <= 0 || reward <= 0) {
-      rrEl.innerText = 'Invalid';
-      warnEl.innerHTML = '<span class="text-red">Cek kembali SL/TP anda!</span>';
+      rrEl.innerText = 'Invalid'; warnEl.innerHTML = '<span class="text-red">Cek kembali SL/TP anda!</span>';
     } else {
-      rrRatio = reward / risk;
-      rrEl.innerText = `1 : ${rrRatio.toFixed(2)}`;
-      if(rrRatio < 2) {
-        warnEl.innerHTML = '<span class="badge badge-red">Risk Reward kurang ideal (< 1:2)</span>';
-      } else {
-        warnEl.innerHTML = '<span class="badge badge-green">Risk Reward Ideal</span>';
-      }
+      rrRatio = reward / risk; rrEl.innerText = `1 : ${rrRatio.toFixed(2)}`;
+      if(rrRatio < 2) warnEl.innerHTML = '<span class="badge badge-red">Risk Reward kurang ideal (< 1:2)</span>';
+      else warnEl.innerHTML = '<span class="badge badge-green">Risk Reward Ideal</span>';
     }
   }
-
   if(i.cap > 0 && i.riskPct > 0 && i.entry > 0 && i.sl > 0) {
     let riskDist = Math.abs(i.entry - i.sl) / i.entry;
     let riskNominal = i.cap * (i.riskPct / 100);
     let posSize = riskDist > 0 ? riskNominal / riskDist : 0;
-
     document.getElementById('mm-risk-nom').innerText = `$${riskNominal.toFixed(2)}`;
     document.getElementById('mm-pos-size').innerText = `$${posSize.toFixed(2)}`;
   }
@@ -597,71 +397,38 @@ function evaluateSetup() {
 }
 
 function checkEntryPermission() {
-  const i = getTradeInputs();
-  const emosi = document.getElementById('t-emosi').value;
-  const resEl = document.getElementById('entry-permission-result');
-  resEl.style.display = 'block';
+  const i = getTradeInputs(); const emosi = document.getElementById('t-emosi').value;
+  const resEl = document.getElementById('entry-permission-result'); resEl.style.display = 'block';
 
   if(!i.entry || !i.sl || !i.tp) {
     resEl.innerHTML = '<div class="text-red font-bold">Isi Entry, SL, dan TP! Win rate tinggi ≠ profit. RR + disiplin > feeling.</div>';
     return;
   }
-
   let rr = evaluateSetup();
   if(rr <= 0) {
-    resEl.innerHTML = '<div class="text-red font-bold">Setup SL/TP halu! Periksa arah LONG/SHORT.</div>';
-    return;
+    resEl.innerHTML = '<div class="text-red font-bold">Setup SL/TP halu! Periksa arah LONG/SHORT.</div>'; return;
   }
-
-  let score = 0;
-  let reasons = [];
-
-  if((i.dir === 'LONG' && trends['4h'] === 'Bullish') || (i.dir === 'SHORT' && trends['4h'] === 'Bearish')) {
-    score += 40; reasons.push("+40: Trend 4H Searah");
-  } else { reasons.push("0: Melawan Trend 4H"); }
-
-  if((i.dir === 'LONG' && trends['1h'] === 'Bullish') || (i.dir === 'SHORT' && trends['1h'] === 'Bearish')) {
-    score += 25; reasons.push("+25: Trend 1H Searah");
-  }
-  
-  if((i.dir === 'LONG' && trends['15m'] === 'Bullish') || (i.dir === 'SHORT' && trends['15m'] === 'Bearish')) {
-    score += 10;
-  }
-
-  if((i.dir === 'LONG' && btc.change > 0) || (i.dir === 'SHORT' && btc.change < 0)) {
-    score += 10; reasons.push("+10: Momentum 24h Mendukung");
-  }
-
+  let score = 0; let reasons = [];
+  if((i.dir === 'LONG' && trends['4h'] === 'Bullish') || (i.dir === 'SHORT' && trends['4h'] === 'Bearish')) { score += 40; reasons.push("+40: Trend 4H Searah"); } else { reasons.push("0: Melawan Trend 4H"); }
+  if((i.dir === 'LONG' && trends['1h'] === 'Bullish') || (i.dir === 'SHORT' && trends['1h'] === 'Bearish')) { score += 25; reasons.push("+25: Trend 1H Searah"); }
+  if((i.dir === 'LONG' && trends['15m'] === 'Bullish') || (i.dir === 'SHORT' && trends['15m'] === 'Bearish')) { score += 10; }
+  if((i.dir === 'LONG' && btc.change > 0) || (i.dir === 'SHORT' && btc.change < 0)) { score += 10; reasons.push("+10: Momentum 24h Mendukung"); }
   if(btc.vol > 15000) score += 5;
-
-  if(rr >= 2) { score += 10; reasons.push("+10: RR Bagus"); }
-  else if (rr >= 1) { score += 5; reasons.push("+5: RR Pas-pasan"); }
-  else { reasons.push("- Penalty: RR Buruk"); }
-
-  if (emosi === 'FOMO' || emosi === 'Revenge') {
-    score -= 30;
-    reasons.push("🚨 -30: Emosi kamu sedang tidak layak untuk eksekusi.");
-  }
+  if(rr >= 2) { score += 10; reasons.push("+10: RR Bagus"); } else if (rr >= 1) { score += 5; reasons.push("+5: RR Pas-pasan"); } else { reasons.push("- Penalty: RR Buruk"); }
+  if (emosi === 'FOMO' || emosi === 'Revenge') { score -= 30; reasons.push("🚨 -30: Emosi kamu sedang tidak layak untuk eksekusi."); }
 
   let verdict = '';
-  if(score >= 70) {
-    verdict = `<span class="text-green font-bold text-center" style="display:block; font-size:1.2rem;">🟢 LAYAK EKSEKUSI</span>`;
-  } else if(score >= 40) {
-    verdict = `<span class="text-yellow font-bold text-center" style="display:block; font-size:1.2rem;">🟡 TUNGGU KONFIRMASI</span>`;
-  } else {
-    verdict = `<span class="text-red font-bold text-center" style="display:block; font-size:1.2rem;">🔴 NO TRADE</span>`;
-  }
+  if(score >= 70) verdict = `<span class="text-green font-bold text-center" style="display:block; font-size:1.2rem;">🟢 LAYAK EKSEKUSI</span>`;
+  else if(score >= 40) verdict = `<span class="text-yellow font-bold text-center" style="display:block; font-size:1.2rem;">🟡 TUNGGU KONFIRMASI</span>`;
+  else verdict = `<span class="text-red font-bold text-center" style="display:block; font-size:1.2rem;">🔴 NO TRADE</span>`;
 
   resEl.innerHTML = `${verdict} <div class="score-circle" style="width:60px; height:60px; font-size:1.5rem; margin: 12px auto; border-color: ${score>=70?'var(--green)':score>=40?'var(--yellow)':'var(--red)'}">${score}</div> <div class="text-sm font-mono text-center"> ${reasons.join('<br>')} </div>`;
 }
 
 function saveTrade() {
-  const i = getTradeInputs();
-  const emosi = document.getElementById('t-emosi').value;
-  const outcome = document.getElementById('t-outcome').value;
-  const pnl = parseFloat(document.getElementById('t-pnl').value) || 0;
+  const i = getTradeInputs(); const emosi = document.getElementById('t-emosi').value;
+  const outcome = document.getElementById('t-outcome').value; const pnl = parseFloat(document.getElementById('t-pnl').value) || 0;
   let rr = evaluateSetup();
-
   if(!i.entry) return alert("Entry harus diisi!");
 
   let qScore = 50;
@@ -672,53 +439,23 @@ function saveTrade() {
   if(emosi === 'Revenge') qScore -= 40;
   qScore = Math.max(0, Math.min(100, qScore));
 
-  const trade = {
-    id: Date.now(),
-    date: new Date().toLocaleString('id-ID'),
-    dir: i.dir,
-    entry: i.entry,
-    sl: i.sl || 0,
-    tp: i.tp || 0,
-    trend: trends['1h'],
-    emosi: emosi,
-    outcome: outcome,
-    pnl: pnl,
-    rr: rr > 0 ? parseFloat(rr.toFixed(2)) : 0,
-    qScore: qScore
-  };
+  const trade = { id: Date.now(), date: new Date().toLocaleString('id-ID'), dir: i.dir, entry: i.entry, sl: i.sl || 0, tp: i.tp || 0, trend: trends['1h'], emosi: emosi, outcome: outcome, pnl: pnl, rr: rr > 0 ? parseFloat(rr.toFixed(2)) : 0, qScore: qScore };
+  trades.unshift(trade); localStorage.setItem('btc_mentor_trades', JSON.stringify(trades));
 
-  trades.unshift(trade);
-  localStorage.setItem('btc_mentor_trades', JSON.stringify(trades));
-
-  document.getElementById('t-entry').value = '';
-  document.getElementById('t-sl').value = '';
-  document.getElementById('t-tp').value = '';
-  document.getElementById('t-pnl').value = '';
-  document.getElementById('entry-permission-result').style.display = 'none';
-
+  document.getElementById('t-entry').value = ''; document.getElementById('t-sl').value = ''; document.getElementById('t-tp').value = ''; document.getElementById('t-pnl').value = ''; document.getElementById('entry-permission-result').style.display = 'none';
   updateUI();
 }
 
 function deleteTrade(id) {
-  if(confirm("Hapus trade ini?")) {
-    trades = trades.filter(t => t.id !== id);
-    localStorage.setItem('btc_mentor_trades', JSON.stringify(trades));
-    updateUI();
-  }
+  if(confirm("Hapus trade ini?")) { trades = trades.filter(t => t.id !== id); localStorage.setItem('btc_mentor_trades', JSON.stringify(trades)); updateUI(); }
 }
 
 function updateUI() {
   const finishedTrades = trades.filter(t => t.outcome === 'Win' || t.outcome === 'Loss' || t.outcome === 'BEP');
-  const total = finishedTrades.length;
-  const wins = finishedTrades.filter(t => t.outcome === 'Win').length;
-  const losses = finishedTrades.filter(t => t.outcome === 'Loss').length;
+  const total = finishedTrades.length; const wins = finishedTrades.filter(t => t.outcome === 'Win').length; const losses = finishedTrades.filter(t => t.outcome === 'Loss').length;
   const wr = total > 0 ? Math.round((wins / total) * 100) : 0;
-
   let avgRr = 0, avgPnl = 0;
-  if(total > 0) {
-    avgRr = finishedTrades.reduce((s, t) => s + t.rr, 0) / total;
-    avgPnl = finishedTrades.reduce((s, t) => s + t.pnl, 0) / total;
-  }
+  if(total > 0) { avgRr = finishedTrades.reduce((s, t) => s + t.rr, 0) / total; avgPnl = finishedTrades.reduce((s, t) => s + t.pnl, 0) / total; }
 
   let bestStreak = 0, worstStreak = 0, currWin = 0, currLoss = 0;
   [...finishedTrades].reverse().forEach(t => {
@@ -730,45 +467,32 @@ function updateUI() {
   const todayStr = new Date().toLocaleString('id-ID').split(',')[0];
   const tradesToday = trades.filter(t => t.date.split(',')[0] === todayStr).length;
 
-  document.getElementById('d-total').innerText = total;
-  document.getElementById('d-wr').innerText = `${wr}%`;
-  document.getElementById('d-rr').innerText = `1:${avgRr.toFixed(1)}`;
-  document.getElementById('d-win').innerText = wins;
-  document.getElementById('d-loss').innerText = losses;
-  document.getElementById('d-pnl').innerText = `${avgPnl > 0 ? '+' : ''}${avgPnl.toFixed(2)}%`;
-  document.getElementById('d-wstreak').innerText = bestStreak;
-  document.getElementById('d-lstreak').innerText = worstStreak;
+  document.getElementById('d-total').innerText = total; document.getElementById('d-wr').innerText = `${wr}%`;
+  document.getElementById('d-rr').innerText = `1:${avgRr.toFixed(1)}`; document.getElementById('d-win').innerText = wins;
+  document.getElementById('d-loss').innerText = losses; document.getElementById('d-pnl').innerText = `${avgPnl > 0 ? '+' : ''}${avgPnl.toFixed(2)}%`;
+  document.getElementById('d-wstreak').innerText = bestStreak; document.getElementById('d-lstreak').innerText = worstStreak;
   document.getElementById('d-today').innerText = tradesToday;
 
-  const emos = ['Tenang', 'FOMO', 'Revenge', 'Takut'];
-  const emCont = document.getElementById('emotion-stats-container');
-  emCont.innerHTML = '';
+  const emos = ['Tenang', 'FOMO', 'Revenge', 'Takut']; const emCont = document.getElementById('emotion-stats-container'); emCont.innerHTML = '';
   emos.forEach(em => {
-    const tr = finishedTrades.filter(t => t.emosi === em);
-    const w = tr.filter(t => t.outcome === 'Win').length;
+    const tr = finishedTrades.filter(t => t.emosi === em); const w = tr.filter(t => t.outcome === 'Win').length;
     const wRate = tr.length > 0 ? Math.round((w / tr.length) * 100) : 0;
     const color = em === 'Tenang' ? 'var(--green)' : (em === 'FOMO' ? 'var(--yellow)' : 'var(--red)');
-
     emCont.innerHTML += `<div class="emotion-bar"> <div class="emotion-label">${em}</div> <div class="emotion-track"> <div class="emotion-fill" style="width: ${wRate}%; background: ${color}"></div> </div> <div class="emotion-val">${wRate}%</div> </div>`;
   });
 
-  const hCont = document.getElementById('history-container');
-  hCont.innerHTML = '';
-
+  const hCont = document.getElementById('history-container'); hCont.innerHTML = '';
   trades.slice(0, 10).forEach(t => {
     const clz = t.outcome === 'Win' ? 'win' : (t.outcome === 'Loss' ? 'loss' : '');
     const dirColor = t.dir === 'LONG' ? 'var(--green)' : 'var(--red)';
     const outColor = t.outcome === 'Win' ? 'var(--green)' : (t.outcome === 'Loss' ? 'var(--red)' : 'var(--text-muted)');
-
     hCont.innerHTML += `<div class="history-card ${clz}"> <div class="history-card-header"> <span style="color: ${dirColor}">${t.dir} ${t.dir==='LONG'?'🟢':'🔴'}</span> <span class="text-muted font-mono" style="font-size:0.8rem">${t.date.split(',')[0]}</span> </div> <div class="grid-2 font-mono" style="font-size: 0.85rem;"> <div>Entry: ${t.entry}</div> <div>Outcome: <span style="color:${outColor}; font-weight:bold">${t.outcome}</span></div> <div>SL: ${t.sl}</div> <div>PnL: <span style="color:${t.pnl>=0?'var(--green)':'var(--red)'}">${t.pnl}%</span></div> <div>TP: ${t.tp}</div> <div>RR: 1:${t.rr}</div> </div> <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: space-between;"> <span class="badge ${t.emosi==='Tenang'?'badge-green':'badge-red'}">${t.emosi}</span> <span class="text-sm">QS: ${t.qScore}/100</span> <button onclick="deleteTrade(${t.id})" style="width:auto; padding: 2px 8px; background:var(--red); border-radius:4px; font-size:0.7rem; color:white">Del</button> </div> </div>`;
   });
 }
 
 async function askAiCoach() {
   const apiKey = document.getElementById('gemini-key').value;
-  const btn = document.getElementById('btn-ai');
-  const out = document.getElementById('ai-output');
-
+  const btn = document.getElementById('btn-ai'); const out = document.getElementById('ai-output');
   if(!apiKey) return alert("Masukkan API Key Gemini di kotak input!");
   if(trades.length < 3) return alert("Butuh minimal 3 data trade untuk dianalisis.");
 
@@ -776,13 +500,11 @@ async function askAiCoach() {
   out.style.display = 'block'; out.innerHTML = "<span class='loader'></span> Membaca jurnal trading...";
 
   const recent = trades.slice(0, 15).map(t => `Dir:${t.dir}, Emosi:${t.emosi}, Trend1H:${t.trend}, RR:1:${t.rr}, Hasil:${t.outcome}, PnL:${t.pnl}%, QS:${t.qScore}`).join('\n');
-
   const prompt = `Analisis kebiasaan trading saya berdasarkan data history (max 15 terakhir) ini:\n${recent}\nWR Keseluruhan: ${document.getElementById('d-wr').innerText}\nTotal Loss: ${document.getElementById('d-loss').innerText}\n\nTugas lu sebagai mentor sadis dan logis:\n1. Kesalahan paling sering apa?\n2. Pola loss gue biasanya karena apa?\n3. Emosi apa yang bikin hancur?\n4. Setup/kondisi market terbaik gue pas kapan?\n5. Saran perbaikan praktis buat besok.\nJangan kasih sinyal. Fokus roasting habit dan risk management. Singkat, padat, blak-blakan.`;
 
   try {
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
     });
     const data = await res.json();
@@ -797,12 +519,7 @@ async function askAiCoach() {
 
 setInterval(fetchTicker, 5000);
 setInterval(updateAllTrends, 60000);
-
-fetchTicker();
-updateAllTrends();
-fetchFnG();
-updateUI();
-
+fetchTicker(); updateAllTrends(); fetchFnG(); updateUI();
 </script>
 </body>
 </html>
