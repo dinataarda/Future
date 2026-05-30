@@ -37,7 +37,7 @@
             font-family: var(--font-main);
             line-height: 1.5;
             padding: 12px;
-            padding-bottom: 80px; /* Space for FAB */
+            padding-bottom: 80px;
             min-height: 100vh;
         }
 
@@ -49,7 +49,6 @@
             margin: 0 auto;
         }
 
-        /* Card & Glassmorphism */
         .card {
             background: var(--bg-card);
             backdrop-filter: blur(12px);
@@ -71,7 +70,6 @@
             align-items: center;
         }
 
-        /* Typography & Colors */
         .text-green { color: var(--green) !important; }
         .text-red { color: var(--red) !important; }
         .text-yellow { color: var(--yellow) !important; }
@@ -88,12 +86,10 @@
         .badge-green { background: var(--green-dim); color: var(--green); }
         .badge-red { background: var(--red-dim); color: var(--red); }
 
-        /* Flex Layouts */
         .row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
 
-        /* Inputs & Buttons */
         input, select, textarea {
             width: 100%;
             background: var(--bg-input);
@@ -129,7 +125,6 @@
         .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); }
         .btn-sm { padding: 8px; font-size: 0.85rem; }
 
-        /* Specific Components */
         .price-display {
             font-size: 2.5rem;
             font-weight: 700;
@@ -415,13 +410,11 @@
 </button>
 
 <script>
-    // --- GLOBAL STATE ---
     let btc = { price: 0, change: 0, high: 0, low: 0, vol: 0 };
     let trends = { '5m': '-', '15m': '-', '1h': '-', '4h': '-' };
     let fng = { value: 50, status: 'Neutral' };
     let trades = JSON.parse(localStorage.getItem('btc_mentor_trades')) || [];
 
-    // --- 1. BTC REAL-TIME (Binance API) ---
     async function fetchTicker() {
         try {
             const res = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT');
@@ -446,11 +439,10 @@
             document.getElementById('btc-low').innerText = btc.low.toFixed(0);
             document.getElementById('sync-status').style.display = 'none';
 
-            evaluateSetup(); // Update live if form is partially filled
+            evaluateSetup(); 
         } catch (e) { console.error(e); }
     }
 
-    // --- 2. TREND ANALYSIS (EMA 50/200) ---
     function calcEMA(data, period) {
         const k = 2 / (period + 1);
         let ema = data[0];
@@ -487,7 +479,6 @@
         await Promise.all([fetchTrend('5m'), fetchTrend('15m'), fetchTrend('1h'), fetchTrend('4h')]);
     }
 
-    // --- 8. FEAR & GREED INDEX ---
     async function fetchFnG() {
         try {
             const res = await fetch('https://api.alternative.me/fng/');
@@ -503,7 +494,6 @@
         } catch (e) { console.error(e); }
     }
 
-    // --- 5. SMART DECISION PANEL (General Market Bias) ---
     function updateSmartDecision() {
         let score = 50;
         let reasons = [];
@@ -545,7 +535,6 @@
         }
     }
 
-    // --- 6. AUTO ENTRY PRICE ---
     function useCurrentPrice() {
         if(btc.price > 0) {
             document.getElementById('t-entry').value = btc.price;
@@ -553,7 +542,6 @@
         }
     }
 
-    // --- 3 & 7. RISK REWARD & MONEY MANAGEMENT ---
     function getTradeInputs() {
         return {
             dir: document.getElementById('t-dir').value,
@@ -569,7 +557,6 @@
         const i = getTradeInputs();
         let rrRatio = 0;
         
-        // RR Calc
         if(i.entry > 0 && i.sl > 0 && i.tp > 0) {
             let risk = 0, reward = 0;
             if(i.dir === 'LONG') {
@@ -597,7 +584,6 @@
             }
         }
 
-        // MM Calc
         if(i.cap > 0 && i.riskPct > 0 && i.entry > 0 && i.sl > 0) {
             let riskDist = Math.abs(i.entry - i.sl) / i.entry;
             let riskNominal = i.cap * (i.riskPct / 100);
@@ -609,58 +595,57 @@
         return rrRatio;
     }
 
-    // --- 4. BOLEHKAH SAYA ENTRY? ---
     function checkEntryPermission() {
         const i = getTradeInputs();
+        const emosi = document.getElementById('t-emosi').value;
         const resEl = document.getElementById('entry-permission-result');
         resEl.style.display = 'block';
 
         if(!i.entry || !i.sl || !i.tp) {
-            resEl.innerHTML = '<div class="text-red font-bold">Isi Entry, SL, dan TP terlebih dahulu!</div>';
+            resEl.innerHTML = '<div class="text-red font-bold">Isi Entry, SL, dan TP! Win rate tinggi ≠ profit. RR + disiplin > feeling.</div>';
             return;
         }
 
         let rr = evaluateSetup();
         if(rr <= 0) {
-            resEl.innerHTML = '<div class="text-red font-bold">Setup SL/TP tidak logis!</div>';
+            resEl.innerHTML = '<div class="text-red font-bold">Setup SL/TP halu! 1 trade tidak menentukan apa-apa, perbaiki analisanya.</div>';
             return;
         }
 
         let score = 0;
         let reasons = [];
 
-        // Trend 4H (40%)
         if((i.dir === 'LONG' && trends['4h'] === 'Bullish') || (i.dir === 'SHORT' && trends['4h'] === 'Bearish')) {
             score += 40; reasons.push("+40: Trend 4H Searah");
         } else { reasons.push("0: Melawan Trend 4H"); }
-
-        // Trend 1H (25%)
         if((i.dir === 'LONG' && trends['1h'] === 'Bullish') || (i.dir === 'SHORT' && trends['1h'] === 'Bearish')) {
             score += 25; reasons.push("+25: Trend 1H Searah");
         }
-
-        // Trend 15m (10%)
         if((i.dir === 'LONG' && trends['15m'] === 'Bullish') || (i.dir === 'SHORT' && trends['15m'] === 'Bearish')) {
             score += 10;
         }
-
-        // Momentum (10%)
         if((i.dir === 'LONG' && btc.change > 0) || (i.dir === 'SHORT' && btc.change < 0)) {
             score += 10; reasons.push("+10: Momentum 24h Mendukung");
         }
-
-        // Volume (5%) - Simple check if vol is decent
         if(btc.vol > 15000) score += 5;
 
-        // RR (10%)
-        if(rr >= 2) { score += 10; reasons.push("+10: RR Bagus (>= 1:2)"); }
+        if(rr >= 2) { score += 10; reasons.push("+10: RR Bagus"); }
         else if (rr >= 1) { score += 5; reasons.push("+5: RR Pas-pasan"); }
         else { reasons.push("- Penalty: RR Buruk"); }
 
+        if (emosi === 'FOMO' || emosi === 'Revenge') {
+            score -= 30;
+            reasons.push("🚨 -30: Emosi kamu sedang tidak layak untuk eksekusi.");
+        }
+
         let verdict = '';
-        if(score >= 70) verdict = '<span class="text-green font-bold text-center" style="display:block; font-size:1.2rem;">🟢 LAYAK DIPERTIMBANGKAN</span>';
-        else if(score >= 40) verdict = '<span class="text-yellow font-bold text-center" style="display:block; font-size:1.2rem;">🟡 TUNGGU KONFIRMASI</span>';
-        else verdict = '<span class="text-red font-bold text-center" style="display:block; font-size:1.2rem;">🔴 NO TRADE</span>';
+        if(score >= 70) {
+            verdict = '<span class="text-green font-bold text-center" style="display:block; font-size:1.2rem;">🟢 LAYAK EKSEKUSI</span>';
+        } else if(score >= 40) {
+            verdict = '<span class="text-yellow font-bold text-center" style="display:block; font-size:1.2rem;">🟡 TUNGGU KONFIRMASI</span>';
+        } else {
+            verdict = '<span class="text-red font-bold text-center" style="display:block; font-size:1.2rem;">🔴 NO TRADE</span><br><span class="text-sm text-center" style="display:block; margin-top:8px;">Setup lemah. Bukan market yang salah, tapi entry yang dipaksa.</span>';
+        }
 
         resEl.innerHTML = `
             ${verdict}
@@ -671,7 +656,6 @@
         `;
     }
 
-    // --- 9 & 10. TRADING JOURNAL & QUALITY SCORE ---
     function saveTrade() {
         const i = getTradeInputs();
         const emosi = document.getElementById('t-emosi').value;
@@ -681,7 +665,6 @@
 
         if(!i.entry) return alert("Entry harus diisi!");
 
-        // Calculate Quality Score
         let qScore = 50;
         if(rr >= 2) qScore += 20; else if(rr > 0 && rr < 1) qScore -= 20;
         if((i.dir === 'LONG' && trends['1h'] === 'Bullish') || (i.dir === 'SHORT' && trends['1h'] === 'Bearish')) qScore += 20;
@@ -689,6 +672,25 @@
         if(emosi === 'FOMO') qScore -= 30;
         if(emosi === 'Revenge') qScore -= 40;
         qScore = Math.max(0, Math.min(100, qScore));
+
+        let brutalFeedback = "";
+        if (outcome === 'Loss') {
+            if (qScore < 50 || rr < 1 || emosi !== 'Tenang') {
+                brutalFeedback = "❌ ERROR EKSEKUSI (Disiplin Buruk).\nSetup lo dari awal udah kacau/emosional. Jangan nyalahin market.";
+            } else {
+                brutalFeedback = "📉 RANDOM NOISE (Market Normal).\nSetup bener tapi kena SL. Evaluasi santai, dilarang keras revenge entry.";
+            }
+        } else if (outcome === 'Win') {
+            if (qScore < 50) {
+                brutalFeedback = "⚠️ Nyaris benar tetap salah.\nEntry ini melanggar rule. Untung lu masih selamat karena hoki.";
+            } else {
+                brutalFeedback = "✅ Disiplin dieksekusi. Rule dipatuhi. Keep it logical.";
+            }
+        }
+
+        if (outcome !== 'Pending') {
+            alert(brutalFeedback + "\n\nREMINDER: Win rate tinggi ≠ profit | RR + Disiplin > Feeling.");
+        }
 
         const trade = {
             id: Date.now(),
@@ -708,7 +710,6 @@
         trades.unshift(trade);
         localStorage.setItem('btc_mentor_trades', JSON.stringify(trades));
         
-        // Reset specific fields
         document.getElementById('t-entry').value = '';
         document.getElementById('t-sl').value = '';
         document.getElementById('t-tp').value = '';
@@ -716,7 +717,6 @@
         document.getElementById('entry-permission-result').style.display = 'none';
 
         updateUI();
-        alert("Trade tersimpan!");
     }
 
     function deleteTrade(id) {
@@ -727,7 +727,6 @@
         }
     }
 
-    // --- 12. DASHBOARD CERDAS & 13. STATS EMOSI & 15. HISTORY ---
     function updateUI() {
         const finishedTrades = trades.filter(t => t.outcome === 'Win' || t.outcome === 'Loss' || t.outcome === 'BEP');
         const total = finishedTrades.length;
@@ -741,9 +740,7 @@
             avgPnl = finishedTrades.reduce((s, t) => s + t.pnl, 0) / total;
         }
 
-        // Streaks
         let bestStreak = 0, worstStreak = 0, currWin = 0, currLoss = 0;
-        // Loop from oldest to newest
         [...finishedTrades].reverse().forEach(t => {
             if(t.outcome === 'Win') { currWin++; currLoss = 0; if(currWin > bestStreak) bestStreak = currWin; }
             else if(t.outcome === 'Loss') { currLoss++; currWin = 0; if(currLoss > worstStreak) worstStreak = currLoss; }
@@ -753,7 +750,6 @@
         const todayStr = new Date().toLocaleString('id-ID').split(',')[0];
         const tradesToday = trades.filter(t => t.date.split(',')[0] === todayStr).length;
 
-        // Update DOM Dashboard
         document.getElementById('d-total').innerText = total;
         document.getElementById('d-wr').innerText = `${wr}%`;
         document.getElementById('d-rr').innerText = `1:${avgRr.toFixed(1)}`;
@@ -764,7 +760,6 @@
         document.getElementById('d-lstreak').innerText = worstStreak;
         document.getElementById('d-today').innerText = tradesToday;
 
-        // Emotion Stats
         const emos = ['Tenang', 'FOMO', 'Revenge', 'Takut'];
         const emCont = document.getElementById('emotion-stats-container');
         emCont.innerHTML = '';
@@ -785,9 +780,34 @@
             `;
         });
 
-        // History Mobile Cards
         const hCont = document.getElementById('history-container');
-        hCont.innerHTML = '';
+        hCont.innerHTML = ''; 
+
+        // 🧱 RULE 3, 5 & 7: TRUTH DASHBOARD & REALITY FILTER & MEMORY LOOP
+        let avgQScore = total > 0 ? Math.round(finishedTrades.reduce((s, t) => s + t.qScore, 0) / total) : 0;
+        let truthMsg = "";
+        
+        if (avgQScore < 60 && wr > 50) {
+            truthMsg = "Kamu bukan trader konsisten. Kamu cuma beruntung (Discipline Score Lemah).";
+        } else if (tradesToday >= 4 && avgPnl < 2) {
+            truthMsg = "Kamu terlihat aktif, tapi tidak produktif (Overtrade indikasi).";
+        }
+
+        let badHabitCount = trades.slice(0, 3).filter(t => t.emosi === 'FOMO' || t.emosi === 'Revenge' || t.qScore < 40).length;
+        if (badHabitCount >= 3) {
+            truthMsg += "<br><span class='text-red font-bold'>⚠️ Kamu bukan belajar. Kamu mengulang kesalahan. (TOP MISTAKE #1: Abaikan Rule)</span>";
+        }
+
+        if (truthMsg !== "") {
+            hCont.innerHTML += `
+                <div class="mini-card" style="border-left: 4px solid var(--red); background: rgba(246, 70, 93, 0.1); margin-bottom: 16px; text-align: left;">
+                    <div class="text-sm font-bold text-red">🧠 REALITY CHECK (Truth Dashboard)</div>
+                    <div class="font-mono text-sm" style="margin-top: 4px;">${truthMsg}</div>
+                    <div class="text-sm" style="margin-top: 4px;">Discipline Score: <strong>${avgQScore}/100</strong></div>
+                </div>
+            `;
+        }
+
         trades.slice(0, 10).forEach(t => {
             const clz = t.outcome === 'Win' ? 'win' : (t.outcome === 'Loss' ? 'loss' : '');
             const dirColor = t.dir === 'LONG' ? 'var(--green)' : 'var(--red)';
@@ -817,7 +837,6 @@
         });
     }
 
-    // --- 11. AI COACH (Gemini) ---
     async function askAiCoach() {
         const apiKey = document.getElementById('gemini-key').value;
         const btn = document.getElementById('btn-ai');
@@ -863,7 +882,6 @@ Jangan kasih sinyal. Fokus roasting habit dan risk management. Singkat, padat, b
         }
     }
 
-    // --- INITIALIZATION ---
     setInterval(fetchTicker, 3000);
     setInterval(updateAllTrends, 60000);
     
