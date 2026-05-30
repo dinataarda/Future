@@ -390,7 +390,7 @@ let trades = JSON.parse(localStorage.getItem('btc_mentor_trades')) || [];
 
 async function fetchTicker() {
   try {
-    const res = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT'));
+    const res = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT');
     const data = await res.json();
     
     btc.price = parseFloat(data.lastPrice);
@@ -427,7 +427,7 @@ function calcEMA(data, period) {
 
 async function fetchTrend(interval) {
   try {
-    const res = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=${interval}&limit=250`));
+    const res = await fetch(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=${interval}&limit=250`);
     const data = await res.json();
     const closes = data.map(d => parseFloat(d[4]));
     const ema50 = calcEMA(closes, 50);
