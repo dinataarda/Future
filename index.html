@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Mentor Trading Pribadi - V5 Pro</title>
+<title>Mentor Trading Pribadi - V5.2 PRO</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 :root {
@@ -17,39 +17,39 @@
 }
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 body { background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-main); line-height: 1.5; padding: 12px; padding-bottom: 90px; min-height: 100vh; overscroll-behavior-y: none; }
-.container { display: flex; flex-direction: column; gap: 16px; max-width: 600px; margin: 0 auto; }
-.card { background: var(--bg-card); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 16px; padding: 16px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); }
-h2 { font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+.container { display: flex; flex-direction: column; gap: 14px; max-width: 600px; margin: 0 auto; overflow-x: hidden; }
+.card { background: var(--bg-card); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 12px; padding: 14px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); }
+h2 { font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 8px;}
 .text-green { color: var(--green) !important; } .text-red { color: var(--red) !important; } .text-yellow { color: var(--yellow) !important; } .text-blue { color: var(--blue) !important; }
-.font-mono { font-family: var(--font-mono); } .text-sm { font-size: 0.85rem; color: var(--text-muted); } .text-center { text-align: center; }
-.badge { padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; display: inline-block; }
-.badge-green { background: var(--green-dim); color: var(--green); } .badge-red { background: var(--red-dim); color: var(--red); }
+.font-mono { font-family: var(--font-mono); } .text-sm { font-size: 0.8rem; color: var(--text-muted); } .text-center { text-align: center; } .text-right { text-align: right; }
+.badge { padding: 4px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; display: inline-block; text-transform: uppercase; }
+.badge-green { background: var(--green-dim); color: var(--green); } .badge-red { background: var(--red-dim); color: var(--red); } .badge-yellow { background: var(--yellow-dim); color: var(--yellow); }
 .row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; } .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-input, select, textarea { width: 100%; background: var(--bg-input); border: 1px solid var(--border); color: var(--text-main); padding: 12px; border-radius: 8px; font-family: var(--font-mono); font-size: 1rem; margin-top: 4px; outline: none; transition: border 0.2s; }
-input:focus, select:focus { border-color: var(--blue); } label { font-size: 0.85rem; color: var(--text-muted); display:block; margin-bottom:4px; } .input-group { margin-bottom: 12px; }
-button { width: 100%; padding: 14px; border: none; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; transition: opacity 0.2s, transform 0.1s; font-family: var(--font-main); }
-button:active { transform: scale(0.98); }
-button:disabled { background: var(--bg-input); color: var(--text-muted); cursor: not-allowed; opacity: 0.7; }
-.btn-primary { background: var(--blue); color: white; } .btn-green { background: var(--green); color: #000; } .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); } .btn-sm { padding: 8px; font-size: 0.85rem; } .btn-danger { background: rgba(246, 70, 93, 0.2); color: var(--red); border: 1px solid var(--red); }
-.price-display { font-size: 2.2rem; font-weight: 700; margin: 8px 0; text-shadow: 0 0 20px rgba(255,255,255,0.1); }
-.progress-container { width: 100%; height: 8px; background: var(--bg-input); border-radius: 4px; overflow: hidden; margin: 12px 0; } .progress-bar { height: 100%; transition: width 0.5s ease-in-out; }
-.mini-card { background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; text-align: center; border: 1px solid var(--border); } .mini-card .val { font-size: 1.1rem; font-weight: bold; font-family: var(--font-mono); margin-top: 4px;}
-.history-card { background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-left: 4px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 12px; font-size: 0.9rem; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; } .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; }
+input, select, textarea { width: 100%; background: var(--bg-input); border: 1px solid var(--border); color: var(--text-main); padding: 10px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.95rem; margin-top: 4px; outline: none; transition: border 0.2s; }
+input:focus, select:focus { border-color: var(--blue); } label { font-size: 0.8rem; color: var(--text-muted); display:block; margin-bottom:2px; } .input-group { margin-bottom: 10px; }
+button { width: 100%; padding: 12px; border: none; border-radius: 6px; font-weight: bold; font-size: 0.95rem; cursor: pointer; transition: opacity 0.2s, transform 0.1s; font-family: var(--font-main); }
+button:active { transform: scale(0.98); } button:disabled { background: var(--bg-input); color: var(--text-muted); cursor: not-allowed; opacity: 0.5; transform: none; }
+.btn-primary { background: var(--blue); color: white; } .btn-green { background: var(--green); color: #000; } .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); } .btn-sm { padding: 6px; font-size: 0.8rem; } .btn-danger { background: rgba(246, 70, 93, 0.15); color: var(--red); border: 1px solid var(--red); }
+.price-display { font-size: 2rem; font-weight: 700; margin: 4px 0; letter-spacing: -0.5px; }
+.progress-container { width: 100%; height: 6px; background: var(--bg-input); border-radius: 3px; overflow: hidden; margin: 10px 0; } .progress-bar { height: 100%; transition: width 0.3s ease; }
+.mini-card { background: rgba(0,0,0,0.2); padding: 8px; border-radius: 6px; text-align: center; border: 1px solid var(--border); } .mini-card .val { font-size: 1rem; font-weight: bold; font-family: var(--font-mono); margin-top: 2px;}
+.history-card { background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-left: 3px solid var(--border); border-radius: 6px; padding: 10px; margin-bottom: 10px; font-size: 0.85rem; }
 .history-card.win { border-left-color: var(--green); } .history-card.loss { border-left-color: var(--red); }
-.loader { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--text-muted); border-radius: 50%; border-top-color: var(--blue); animation: spin 1s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.tab-content { display: none; animation: fadeIn 0.3s ease; } .tab-content.active { display: block; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+.dot-green { background: var(--green); box-shadow: 0 0 5px var(--green); } .dot-yellow { background: var(--yellow); } .dot-red { background: var(--red); }
+.tab-content { display: none; animation: fadeIn 0.2s ease; } .tab-content.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(11, 14, 17, 0.98); backdrop-filter: blur(10px); display: flex; justify-content: space-around; padding: 10px 0 16px 0; border-top: 1px solid var(--border); z-index: 1000; }
-.nav-btn { background: none; border: none; color: var(--text-muted); font-size: 0.75rem; padding: 6px; border-radius: 8px; width: auto; font-family: var(--font-main); display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.nav-btn.active { color: var(--yellow); } .nav-btn svg { width: 22px; height: 22px; fill: currentColor; }
-.checklist-item { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; border: 1px solid var(--border); } .checklist-item input { width: auto; margin: 0; transform: scale(1.2); accent-color: var(--blue); }
-.top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-.pair-selector { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 1.1rem; }
-.alert-box { background: rgba(246, 70, 93, 0.2); border: 1px solid var(--red); padding: 12px; border-radius: 8px; color: var(--red); font-weight: bold; text-align: center; margin-bottom: 12px; display: none; }
-select[multiple] { height: 100px; }
-.playbook-rule { border-left: 3px solid var(--blue); padding-left: 10px; margin-bottom: 10px; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; }
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(11, 14, 17, 0.95); backdrop-filter: blur(10px); display: flex; justify-content: space-around; padding: 8px 0 16px 0; border-top: 1px solid var(--border); z-index: 1000; }
+.nav-btn { background: none; border: none; color: var(--text-muted); font-size: 0.7rem; padding: 4px; width: auto; font-family: var(--font-main); display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.nav-btn.active { color: var(--yellow); } .nav-btn svg { width: 20px; height: 20px; fill: currentColor; }
+.checklist-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 6px; border: 1px solid var(--border); font-size:0.85rem;} .checklist-item input { width: auto; margin: 0; transform: scale(1.1); accent-color: var(--blue); }
+.top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.pair-selector { background: transparent; border: none; color: var(--text-main); font-weight: bold; font-size: 1.2rem; outline: none; padding: 0; width: auto; }
+.alert-box { background: rgba(246, 70, 93, 0.15); border: 1px solid var(--red); padding: 10px; border-radius: 6px; color: var(--red); font-weight: bold; text-align: center; margin-bottom: 12px; display: none; font-size: 0.85rem;}
+.log-entry { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.health-item { display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 4px; font-family: var(--font-mono); }
 </style>
 </head>
 <body>
@@ -57,159 +57,152 @@ select[multiple] { height: 100px; }
 <div class="container">
 <div class="top-nav">
   <select id="pair-selector" class="pair-selector" onchange="changePair()">
-    <option value="BTCUSDT">BTCUSDT</option>
-    <option value="ETHUSDT">ETHUSDT</option>
-    <option value="SOLUSDT">SOLUSDT</option>
-    <option value="BNBUSDT">BNBUSDT</option>
-    <option value="SUIUSDT">SUIUSDT</option>
-    <option value="XRPUSDT">XRPUSDT</option>
+    <option value="BTCUSDT">BTCUSDT</option><option value="ETHUSDT">ETHUSDT</option>
+    <option value="SOLUSDT">SOLUSDT</option><option value="BNBUSDT">BNBUSDT</option>
+    <option value="SUIUSDT">SUIUSDT</option><option value="XRPUSDT">XRPUSDT</option>
   </select>
   <div style="display:flex; gap:8px; align-items:center;">
-    <span id="session-badge" class="badge" style="background:var(--text-muted); color:white;">--</span>
-    <span id="sync-status" class="loader"></span>
+    <span id="session-badge" class="badge text-muted">--</span>
+    <span id="api-status" class="badge" style="background:rgba(0,0,0,0.3); border:1px solid var(--border);"><span class="status-dot dot-yellow" id="api-dot"></span><span id="api-text">Sync</span></span>
   </div>
 </div>
 
 <div id="tab-dashboard" class="tab-content active">
-  <div id="smart-alert" class="alert-box">⚠️ MARKET EXTREME (RSI > 75 / < 25)</div>
+  <div id="smart-alert" class="alert-box">⚠️ MARKET EXTREME</div>
 
   <div class="card">
     <div class="grid-2" style="align-items: center;">
       <div><div class="text-sm">Price</div><div class="price-display font-mono" id="m-price">---</div></div>
-      <div class="text-right"><div class="text-sm">24h Change</div><div class="font-mono font-bold" id="m-change" style="font-size: 1.5rem;">---</div></div>
+      <div class="text-right"><div class="text-sm">24h Change</div><div class="font-mono font-bold" id="m-change" style="font-size: 1.3rem;">---</div></div>
     </div>
     <div class="grid-3 text-sm font-mono mt-2" style="border-top: 1px solid var(--border); padding-top: 8px;">
       <div>Vol: <span id="m-vol">---</span></div>
-      <div>High: <span id="m-high">---</span></div>
-      <div>Low: <span id="m-low">---</span></div>
+      <div class="text-center">H: <span id="m-high" class="text-green">---</span></div>
+      <div class="text-right">L: <span id="m-low" class="text-red">---</span></div>
     </div>
   </div>
 
   <div class="grid-2">
     <div class="card">
-      <h2>Context</h2>
+      <h2>Market Context</h2>
       <div class="text-sm font-mono row"><span>Regime:</span> <span id="m-regime" class="text-blue font-bold">--</span></div>
       <div class="text-sm font-mono row"><span>RSI (14):</span> <span id="m-rsi" class="font-bold">--</span></div>
-      <div class="text-sm font-mono row"><span>F&G Index:</span> <span id="fng-val" class="font-bold">--</span></div>
-      <div class="text-sm font-mono row"><span>Volatility:</span> <span id="m-vola" class="font-bold">--</span></div>
+      <div class="text-sm font-mono row"><span>F&G Idx:</span> <span id="fng-val" class="font-bold">--</span></div>
+      <div class="text-sm font-mono row"><span>Volatil:</span> <span id="m-vola" class="font-bold">--</span></div>
     </div>
     <div class="card">
       <h2>Structure</h2>
-      <div class="text-center mb-2"><span class="badge badge-red" style="font-size:1rem;">Res: <span id="m-res">--</span></span></div>
-      <div class="text-center"><span class="badge badge-green" style="font-size:1rem;">Sup: <span id="m-sup">--</span></span></div>
-    </div>
-  </div>
-
-  <div class="grid-2">
-    <div class="card text-center">
-      <h2>Daily Score</h2>
-      <div id="daily-score" style="font-size: 3rem; font-weight: 900; line-height: 1; font-family: var(--font-mono); margin: 10px 0;">-</div>
-      <div id="daily-streak" class="badge">--</div>
-    </div>
-    <div class="card text-center">
-      <h2>Drawdown Engine</h2>
-      <div id="current-dd" class="font-mono font-bold dd-safe" style="font-size: 1.8rem; margin: 10px 0;">0%</div>
-      <div class="text-sm">Max: <span id="max-dd" class="font-mono">0%</span></div>
+      <div class="text-center mb-2"><span class="badge badge-red" style="font-size:0.9rem;">Res: <span id="m-res">--</span></span></div>
+      <div class="text-center"><span class="badge badge-green" style="font-size:0.9rem;">Sup: <span id="m-sup">--</span></span></div>
     </div>
   </div>
 
   <div class="card">
     <h2>Smart Decision Panel</h2>
     <div class="progress-container"><div class="progress-bar" id="ds-bar" style="width: 0%; background: var(--text-muted);"></div></div>
-    <div class="text-center" style="font-weight: bold; font-size: 1.2rem; margin-top:8px;" id="ds-status">ANALYZING...</div>
+    <div class="text-center" style="font-weight: bold; font-size: 1.1rem; margin-top:8px;" id="ds-status">ANALYZING...</div>
     <div class="grid-3 text-sm font-mono mt-2" style="border-top: 1px solid var(--border); padding-top: 8px;">
       <div class="text-center">4H: <span id="trend-4h" class="font-bold">--</span></div>
       <div class="text-center">1H: <span id="trend-1h" class="font-bold">--</span></div>
       <div class="text-center">15m: <span id="trend-15m" class="font-bold">--</span></div>
     </div>
   </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h2>System Health</h2>
+      <div class="health-item"><span>API</span><span id="h-api" class="text-yellow">Updating</span></div>
+      <div class="health-item"><span>Storage</span><span id="h-store" class="text-green">OK v5.2</span></div>
+      <div class="health-item"><span>Scan</span><span id="h-scan" class="text-muted">Idle</span></div>
+    </div>
+    <div class="card text-center">
+      <h2>Drawdown</h2>
+      <div id="current-dd" class="font-mono font-bold" style="font-size: 1.8rem; margin: 4px 0;">0%</div>
+      <div class="text-sm font-mono">Max: <span id="max-dd">0%</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Multi-Pair Scanner V2 <span id="scan-prog" class="text-sm font-mono text-muted">0/0</span></h2>
+    <div id="scanner-container" class="font-mono text-sm">Menunggu scan...</div>
+    <div class="text-right text-muted text-sm font-mono mt-2" style="font-size:0.65rem;">Last: <span id="scan-last">--:--:--</span></div>
+  </div>
 </div>
 
 <div id="tab-jurnal" class="tab-content">
   
-  <div class="card" style="border-color: var(--yellow);">
-    <h2 style="color: var(--yellow);">=== RISK MANAGEMENT ===</h2>
+  <div class="card" style="border-color: var(--blue);">
+    <h2 style="color: var(--blue);">=== RISK MANAGEMENT ===</h2>
     <div class="grid-2">
-      <div class="input-group">
-        <label>Total Modal ($)</label>
-        <input type="number" id="t-capital" oninput="saveSettings(); evalSetup();" placeholder="100">
-      </div>
-      <div class="input-group">
-        <label>Risk per Trade (%)</label>
-        <select id="t-risk-pct" onchange="saveSettings(); if(isAutoActive) generateAutoSetup(); evalSetup();">
-          <option value="0.5">0.5%</option>
-          <option value="1">1%</option>
-          <option value="2">2%</option>
-          <option value="3">3%</option>
-          <option value="5">5%</option>
-        </select>
-      </div>
+      <div class="input-group"><label>Total Modal ($)</label><input type="number" id="t-capital" oninput="triggerEval()" placeholder="100"></div>
+      <div class="input-group"><label>Risk/Trade (%)</label><select id="t-risk-pct" onchange="triggerEval()"><option value="0.5">0.5%</option><option value="1">1%</option><option value="2">2%</option><option value="3">3%</option><option value="5">5%</option></select></div>
     </div>
-    <div class="grid-2 text-sm font-mono mt-2" style="border-top:1px solid var(--border); padding-top:12px;">
-      <div>Risk Nom: <span id="rm-risk-nom" class="text-red font-bold">$0</span></div>
-      <div>Pos Size: <span id="rm-pos-size" class="text-green font-bold">$0</span></div>
-      <div>Max Daily Loss: <span id="rm-daily-loss" class="text-yellow font-bold">$0</span></div>
-      <div>Max Week Loss: <span id="rm-weekly-loss" class="text-yellow font-bold">$0</span></div>
+    <div class="grid-4 text-center text-sm font-mono mt-2" style="border-top:1px solid var(--border); padding-top:8px;">
+      <div>Nom<br><span id="rm-risk-nom" class="text-red font-bold">$0</span></div>
+      <div>Size<br><span id="rm-pos-size" class="text-green font-bold">$0</span></div>
+      <div>Day Loss<br><span id="rm-daily-loss" class="text-yellow font-bold">$0</span></div>
+      <div>Wk Loss<br><span id="rm-weekly-loss" class="text-yellow font-bold">$0</span></div>
     </div>
-    <div id="rm-warning" class="text-red font-bold text-center mt-3" style="display:none; background: rgba(246,70,93,0.2); padding: 8px; border-radius: 8px; border: 1px solid var(--red);">⚠️ Modal tidak valid! Fungsi Trade dinonaktifkan.</div>
+    <div id="rm-warning" class="text-red font-bold text-center mt-2" style="display:none; background:rgba(246,70,93,0.15); padding:6px; border-radius:6px; font-size:0.8rem;">⚠️ Modal Invalid / Kosong</div>
   </div>
 
   <div class="card">
-    <h2>Trade Setup Assistant</h2>
-    <div class="input-group" style="margin-bottom: 12px;">
-      <label>Target RR (Auto Setup)</label>
-      <select id="t-target-rr" onchange="if(isAutoActive) generateAutoSetup(); evalSetup();">
-        <option value="2">1:2</option>
-        <option value="3" selected>1:3</option>
-        <option value="4">1:4</option>
-      </select>
-    </div>
+    <h2>Trade Assistant <button class="btn-outline btn-sm" style="width:auto; padding:2px 8px;" onclick="resetForm()">Clear</button></h2>
+    
+    <div class="input-group"><label>Target RR (Auto Setup)</label><select id="t-target-rr" onchange="triggerEval()"><option value="2">1:2</option><option value="3" selected>1:3</option><option value="4">1:4</option></select></div>
+    <button class="btn-primary" style="margin-bottom: 12px; background:var(--blue);" onclick="generateAutoSetup()">🧠 SMART AUTO SETUP</button>
 
-    <button class="btn-primary" style="background: #a855f7; margin-bottom: 16px;" onclick="generateAutoSetup()">🧠 SMART AUTO SETUP</button>
-
-    <div class="grid-2" style="margin-bottom: 12px;">
-      <div class="input-group"><label>Direction</label><select id="t-dir" onchange="evalSetup()"><option value="LONG">🟢 LONG</option><option value="SHORT">🔴 SHORT</option></select></div>
-      <div class="input-group"><label>Entry Price</label><input type="number" id="t-entry" oninput="evalSetup()"></div>
+    <div class="grid-2" style="margin-bottom: 8px;">
+      <div class="input-group"><label>Direction</label><select id="t-dir" onchange="triggerEval()"><option value="LONG">🟢 LONG</option><option value="SHORT">🔴 SHORT</option></select></div>
+      <div class="input-group"><label>Entry Price</label><input type="number" id="t-entry" oninput="triggerEval()"></div>
     </div>
     <div class="grid-2">
-      <div class="input-group"><label>Stop Loss (SL)</label><input type="number" id="t-sl" oninput="evalSetup()"></div>
-      <div class="input-group"><label>Take Profit (TP)</label><input type="number" id="t-tp" oninput="evalSetup()"></div>
+      <div class="input-group"><label>Stop Loss (SL)</label><input type="number" id="t-sl" oninput="triggerEval()"></div>
+      <div class="input-group"><label>Take Profit (TP)</label><input type="number" id="t-tp" oninput="triggerEval()"></div>
     </div>
 
-    <div class="mini-card" style="margin: 12px 0;">
-      <div class="row" style="margin: 0;"><span>Risk / Reward Ratio:</span><span id="rr-display" class="font-mono font-bold">--</span></div>
-    </div>
+    <div class="mini-card" style="margin: 10px 0;"><div class="row" style="margin: 0;"><span>Risk / Reward Ratio:</span><span id="rr-display" class="font-mono font-bold">--</span></div></div>
+    <div id="setup-warning" class="text-red text-center font-bold text-sm mb-2" style="display:none;"></div>
 
-    <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border);">
-      <h3 style="font-size:0.85rem; color:var(--text-muted); margin-bottom:8px;">Pre-Trade Checklist (Wajib)</h3>
-      <label class="checklist-item"><input type="checkbox" id="chk-trend"> Trend 4H Searah</label>
-      <label class="checklist-item"><input type="checkbox" id="chk-snr"> Beli di Support / Jual di Res</label>
-      <label class="checklist-item"><input type="checkbox" id="chk-rr"> RR Minimal 1:2</label>
-      <label class="checklist-item"><input type="checkbox" id="chk-sl"> Stop Loss Valid</label>
-      <label class="checklist-item"><input type="checkbox" id="chk-fomo"> Tidak FOMO / Revenge</label>
-    </div>
-
-    <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border);">
+    <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border);">
+      <h3 style="font-size:0.8rem; color:var(--text-muted); margin-bottom:6px;">Checklist Pre-Trade</h3>
       <div class="grid-2">
-        <div class="input-group"><label>Emosi</label><select id="t-emosi"><option value="Tenang">Tenang</option><option value="FOMO">FOMO</option><option value="Revenge">Revenge</option></select></div>
-        <div class="input-group"><label>Setup</label><select id="t-alasan"><option value="Breakout">Breakout</option><option value="Pullback">Pullback</option><option value="SnR">SnR</option><option value="MSB">MSB</option></select></div>
+        <label class="checklist-item"><input type="checkbox" id="chk-trend"> 4H Searah</label>
+        <label class="checklist-item"><input type="checkbox" id="chk-snr"> Beli SnR</label>
+        <label class="checklist-item"><input type="checkbox" id="chk-rr"> RR Valid</label>
+        <label class="checklist-item"><input type="checkbox" id="chk-fomo"> No FOMO</label>
+      </div>
+    </div>
+
+    <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border);">
+      <div class="grid-2">
+        <div class="input-group"><label>Emosi</label><select id="t-emosi" onchange="saveDraft()"><option value="Tenang">Tenang</option><option value="FOMO">FOMO</option><option value="Revenge">Revenge</option></select></div>
+        <div class="input-group"><label>Setup</label><select id="t-alasan" onchange="saveDraft()"><option value="Breakout">Breakout</option><option value="Pullback">Pullback</option><option value="SnR">SnR</option><option value="MSB">MSB</option></select></div>
       </div>
       <div class="grid-2">
-        <div class="input-group"><label>Outcome</label><select id="t-outcome"><option value="Pending">Pending</option><option value="Win">Win</option><option value="Loss">Loss</option><option value="BEP">BEP</option></select></div>
-        <div class="input-group"><label>Real PnL (%)</label><input type="number" id="t-pnl" placeholder="0"></div>
+        <div class="input-group"><label>Outcome</label><select id="t-outcome" onchange="saveDraft()"><option value="Pending">Pending</option><option value="Win">Win</option><option value="Loss">Loss</option><option value="BEP">BEP</option></select></div>
+        <div class="input-group"><label>Real PnL (%)</label><input type="number" id="t-pnl" placeholder="0" oninput="saveDraft()"></div>
       </div>
+      <input type="hidden" id="t-edit-id" value="">
       <button id="btn-save-trade" class="btn-green" onclick="saveTrade()">Simpan ke Jurnal</button>
     </div>
   </div>
   
-  <div class="card"><h2>Riwayat Jurnal</h2><div id="history-container"></div></div>
+  <div class="card">
+    <h2>Riwayat Jurnal</h2>
+    <div class="grid-2 mb-2">
+      <input type="text" id="f-search" placeholder="Cari Pair..." oninput="renderJournal()" class="btn-sm">
+      <select id="f-out" onchange="renderJournal()" class="btn-sm"><option value="All">Semua</option><option value="Win">Win</option><option value="Loss">Loss</option><option value="Pending">Pending</option></select>
+    </div>
+    <div id="history-container"></div>
+  </div>
 </div>
 
 <div id="tab-coach" class="tab-content">
   <div class="card">
     <h2>Equity Curve</h2>
-    <div class="text-sm text-center font-mono text-muted mb-2">Baseline Modal: <span id="eq-baseline">$0</span></div>
-    <canvas id="equityChart" height="150"></canvas>
+    <div class="text-sm text-center font-mono text-muted mb-2">Baseline: <span id="eq-baseline">$0</span></div>
+    <div style="position: relative; height:200px; width:100%;"><canvas id="equityChart"></canvas></div>
   </div>
 
   <div class="card">
@@ -225,45 +218,40 @@ select[multiple] { height: 100px; }
   </div>
 
   <div class="card">
-    <h2>Personal Playbook (SOP)</h2>
-    <div id="playbook-container" class="text-sm">Data jurnal belum cukup untuk generate SOP.</div>
+    <h2>Playbook (SOP)</h2>
+    <div id="playbook-container" class="text-sm">Butuh min 5 trade buat generate SOP.</div>
   </div>
 
   <div class="card">
     <h2>Trade Replay Simulator</h2>
-    <p class="text-sm text-muted mb-2">Latih feeling baca struktur market (Data Acak).</p>
-    <div class="mini-card font-mono text-left mb-2" id="replay-context">Klik Start.</div>
+    <div class="mini-card font-mono text-left mb-2" id="replay-context">Latih akurasi entry. Klik Start.</div>
     <div class="grid-3" id="replay-actions" style="display:none;">
       <button class="btn-green btn-sm" onclick="guessReplay('LONG')">LONG</button>
       <button class="btn-red btn-sm" style="background:var(--red);color:white;" onclick="guessReplay('SHORT')">SHORT</button>
       <button class="btn-outline btn-sm" onclick="guessReplay('WAIT')">WAIT</button>
     </div>
     <button class="btn-primary" id="btn-start-replay" onclick="startReplay()">Start Replay</button>
-    <div id="replay-result" class="mt-2 text-center font-bold"></div>
-  </div>
-</div>
-
-<div id="tab-academy" class="tab-content">
-  <div class="card">
-    <h2>Academy & SOP Dasar</h2>
-    <div class="playbook-rule"><strong>1. Market Structure:</strong> Trend Bullish (Highs makin tinggi), Bearish (Lows makin rendah). Jangan lawan trend besar (4H).</div>
-    <div class="playbook-rule"><strong>2. Risk Management:</strong> Max risk 1-2% per trade. Jika SL kena berturut-turut, stop trading hari itu.</div>
-    <div class="playbook-rule"><strong>3. Support Resistance:</strong> Beli di Support (pantulan atas), Jual di Resistance (pantulan bawah). Jangan asal entry di tengah.</div>
-    <div class="playbook-rule"><strong>4. Liquidity Sweep:</strong> Market sering menembus sedikit area SnR untuk menjebak retail sebelum berbalik arah.</div>
-    <div class="playbook-rule"><strong>5. Psikologi:</strong> Trading itu probabilitas. Tidak ada setup 100% win. Fokus pada eksekusi SOP, bukan hasil per trade.</div>
+    <div id="replay-result" class="mt-2 text-center font-bold font-mono"></div>
   </div>
 </div>
 
 <div id="tab-settings" class="tab-content">
   <div class="card">
-    <h2>Pengaturan Sistem V5</h2>
-    <div class="input-group"><label>Drawdown Mode</label><select id="set-dd"><option value="Fixed">Fixed (Dari Modal Awal)</option><option value="Compound">Compound (Dari Peak)</option></select></div>
+    <h2>Pengaturan Sistem V5.2</h2>
+    <div class="input-group"><label>Drawdown Mode</label><select id="set-dd"><option value="Fixed">Fixed (Modal Awal)</option><option value="Compound">Compound (Dari Peak)</option></select></div>
     <div class="input-group"><label>Max Trade Harian</label><input type="number" id="set-max" value="3"></div>
-    <div style="border-top: 1px solid var(--border); padding-top: 16px; margin-top: 16px; display:flex; flex-direction:column; gap:12px;">
-      <button onclick="exportData()" class="btn-outline">Export Backup (JSON)</button>
-      <button onclick="document.getElementById('import-file').click()" class="btn-outline">Import Recovery (JSON)</button>
+    <div style="border-top: 1px solid var(--border); padding-top: 12px; margin-top: 12px; display:flex; flex-direction:column; gap:8px;">
+      <button onclick="exportData()" class="btn-outline btn-sm">Export Backup (JSON)</button>
+      <button onclick="getEl('import-file').click()" class="btn-outline btn-sm">Import Recovery (JSON)</button>
       <input type="file" id="import-file" style="display:none" onchange="importData(event)">
-      <button onclick="resetData()" class="btn-danger">Wipe Data Jurnal</button>
+      <button onclick="resetData()" class="btn-danger btn-sm">Wipe Data Jurnal</button>
+    </div>
+  </div>
+  
+  <div class="card mt-2">
+    <h2>System Logs</h2>
+    <div id="sys-logs" style="max-height: 150px; overflow-y: auto; background: rgba(0,0,0,0.3); padding:8px; border-radius:6px;">
+      <div class="log-entry">System ready.</div>
     </div>
   </div>
 </div>
@@ -274,64 +262,127 @@ select[multiple] { height: 100px; }
   <button onclick="switchTab('dashboard')" class="nav-btn active" id="nav-dashboard"><svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>Dash</button>
   <button onclick="switchTab('jurnal')" class="nav-btn" id="nav-jurnal"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Jurnal</button>
   <button onclick="switchTab('coach')" class="nav-btn" id="nav-coach"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>Coach</button>
-  <button onclick="switchTab('academy')" class="nav-btn" id="nav-academy"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>Acdmy</button>
   <button onclick="switchTab('settings')" class="nav-btn" id="nav-settings"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.73 8.87a.49.49 0 0 0 .12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.03-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>Set</button>
 </nav>
 
 <script>
-// --- V5 ENGINE: STABILITY & PERSISTENCE ---
+// ==========================================
+// V5.2 PRODUCTION ENGINE - HARDENED
+// ==========================================
+const DB_VERSION = "5.2";
 let cp = 'BTCUSDT';
-let md = { price:0, chg:0, vol:0, h:0, l:0, rsi:50, sup:0, res:0, vola:0, regime:'Sideways', tr:{'5m':'-', '15m':'-', '1h':'-', '4h':'-'} };
-let trades = [];
-let eqChart; let replayData = []; let isFetching = false; let isAutoActive = false;
+let md = { price:0, chg:0, vol:0, h:0, l:0, rsi:50, sup:0, res:0, vola:0, regime:'Loading', tr:{'15m':'-', '1h':'-', '4h':'-'} };
+let trades = []; let logs = []; let eqChart = null; 
+let isFetching = false; let isAutoActive = false;
 const scanPairs = ['BTCUSDT','ETHUSDT','SOLUSDT','BNBUSDT','SUIUSDT','XRPUSDT'];
 
+// --- SAFE DOM HELPERS ---
 const getEl = id => document.getElementById(id);
-const safeVal = id => parseFloat(getEl(id)?.value) || 0;
-const safeDiv = (n, d) => (d === 0 || !isFinite(n/d) || isNaN(n/d) ? 0 : n/d);
+const setTxt = (id, v, c=null) => { let e = getEl(id); if(e){ e.innerText = v; if(c) e.style.color = c; } };
+const safeNum = v => { let n = parseFloat(v); return isNaN(n) || !isFinite(n) ? 0 : n; };
+const fmtPrice = p => new Intl.NumberFormat('en-US', { minimumFractionDigits: p<1?4:2, maximumFractionDigits: p<1?6:2 }).format(safeNum(p));
 
-// Init Load LocalStorage
-try { trades = JSON.parse(localStorage.getItem('btc_mentor_v5_data')) || []; } catch(e) { trades = []; }
-getEl('t-capital').value = localStorage.getItem('v5_capital') || 100;
-getEl('t-risk-pct').value = localStorage.getItem('v5_risk') || 1;
-getEl('set-dd').value = localStorage.getItem('v5_dd') || 'Fixed';
-getEl('set-max').value = localStorage.getItem('v5_max') || 3;
+// --- SYSTEM LOGS RING BUFFER ---
+function addLog(msg, type='info') {
+  let time = new Date().toLocaleTimeString('id-ID');
+  logs.unshift(`[${time}] ${type.toUpperCase()}: ${msg}`);
+  if(logs.length > 20) logs.pop();
+  let html = logs.map(l => `<div class="log-entry">${l}</div>`).join('');
+  if(getEl('sys-logs')) getEl('sys-logs').innerHTML = html;
+}
+
+// --- STORAGE SYSTEM (Auto-Repair & Versioning) ---
+function initStorage() {
+  try {
+    let raw = localStorage.getItem('v5_core_data');
+    if(raw) {
+      let data = JSON.parse(raw);
+      if(data.version !== DB_VERSION) addLog(`Migrating from ${data.version||'old'} to ${DB_VERSION}`, 'warn');
+      trades = Array.isArray(data.trades) ? data.trades : [];
+    } else {
+      // Fallback old v5 data
+      let old = JSON.parse(localStorage.getItem('btc_mentor_v5_data'));
+      if(old && Array.isArray(old)) trades = old;
+      addLog("Initial setup/Migration successful.");
+    }
+  } catch(e) { 
+    addLog("Storage corrupt! Starting fresh.", 'error'); trades = []; 
+    setTxt('h-store', 'Error', 'var(--red)');
+  }
+  saveStorage();
+  
+  getEl('t-capital').value = safeNum(localStorage.getItem('v5_capital')) || 100;
+  getEl('t-risk-pct').value = safeNum(localStorage.getItem('v5_risk')) || 1;
+  getEl('set-dd').value = localStorage.getItem('v5_dd') || 'Fixed';
+  getEl('set-max').value = safeNum(localStorage.getItem('v5_max')) || 3;
+  loadDraft();
+}
+
+function saveStorage() {
+  try { localStorage.setItem('v5_core_data', JSON.stringify({ version: DB_VERSION, trades, time: Date.now() })); setTxt('h-store', `OK v${DB_VERSION}`, 'var(--green)'); }
+  catch(e) { addLog("Save failed (Quota?)", 'error'); setTxt('h-store', 'Fail', 'var(--red)'); }
+}
 
 function saveSettings() {
-  localStorage.setItem('v5_capital', getEl('t-capital').value);
-  localStorage.setItem('v5_risk', getEl('t-risk-pct').value);
+  localStorage.setItem('v5_capital', safeNum(getEl('t-capital').value));
+  localStorage.setItem('v5_risk', safeNum(getEl('t-risk-pct').value));
   updateAnalytics(); 
 }
 
-['set-dd', 'set-max'].forEach(id => getEl(id).addEventListener('change', e => {
+['set-dd', 'set-max'].forEach(id => getEl(id)?.addEventListener('change', e => {
   localStorage.setItem(e.target.id.replace('set-', 'v5_'), e.target.value); updateAnalytics();
 }));
 
+// --- AUTO SAVE DRAFT ---
+function saveDraft() {
+  let draft = {
+    rr: getEl('t-target-rr')?.value, dir: getEl('t-dir')?.value,
+    e: getEl('t-entry')?.value, sl: getEl('t-sl')?.value, tp: getEl('t-tp')?.value,
+    emosi: getEl('t-emosi')?.value, alasan: getEl('t-alasan')?.value
+  };
+  localStorage.setItem('v5_draft', JSON.stringify(draft));
+}
+function loadDraft() {
+  try {
+    let d = JSON.parse(localStorage.getItem('v5_draft'));
+    if(!d) return;
+    if(d.rr) getEl('t-target-rr').value = d.rr; if(d.dir) getEl('t-dir').value = d.dir;
+    if(d.e) getEl('t-entry').value = d.e; if(d.sl) getEl('t-sl').value = d.sl; if(d.tp) getEl('t-tp').value = d.tp;
+    if(d.emosi) getEl('t-emosi').value = d.emosi; if(d.alasan) getEl('t-alasan').value = d.alasan;
+  } catch(e){}
+}
+function triggerEval() { saveSettings(); saveDraft(); if(isAutoActive) generateAutoSetup(); evalSetup(); }
+
+// --- NAV & PAIR ---
 function switchTab(id) {
   document.querySelectorAll('.tab-content, .nav-btn').forEach(el => el.classList.remove('active'));
   getEl(`tab-${id}`)?.classList.add('active'); getEl(`nav-${id}`)?.classList.add('active');
   if(id === 'dashboard') updateDashboard();
   if(id === 'coach') updateAnalytics();
-  if(id === 'jurnal') evalSetup(); // re-eval when opening jurnal
+  if(id === 'jurnal') { evalSetup(); renderJournal(); }
+}
+function changePair() { cp = getEl('pair-selector').value; addLog(`Pair changed to ${cp}`); fetchAll(); }
+
+// --- API ENGINE (Retry & Fallback) ---
+function updateApiUI(status) {
+  let dot = getEl('api-dot'), txt = getEl('api-text'), h = getEl('h-api');
+  if(!dot || !txt || !h) return;
+  dot.className = 'status-dot';
+  if(status === 'ok') { dot.classList.add('dot-green'); txt.innerText = 'Connected'; h.innerText = 'Online'; h.style.color = 'var(--green)'; }
+  else if(status === 'sync') { dot.classList.add('dot-yellow'); txt.innerText = 'Syncing...'; h.innerText = 'Updating'; h.style.color = 'var(--yellow)'; }
+  else { dot.classList.add('dot-red'); txt.innerText = 'Offline'; h.innerText = 'Offline (Cache)'; h.style.color = 'var(--red)'; }
 }
 
-function changePair() { cp = getEl('pair-selector').value; fetchAll(); }
-
-// 1. ROBUST API FETCH
-async function fetchSafe(url, retries = 2) {
+async function fetchSafe(url, retries=2) {
   for(let i=0; i<retries; i++) {
-    const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), 6000);
+    const c = new AbortController(); const id = setTimeout(() => c.abort(), 5000);
     try {
-      const res = await fetch(url, { signal: controller.signal });
-      clearTimeout(id);
+      const res = await fetch(url, { signal: c.signal }); clearTimeout(id);
       if(res.ok) return await res.json();
-    } catch(e) { clearTimeout(id); if(i === retries-1) return null; }
-  }
-  return null;
+    } catch(e) { clearTimeout(id); if(i===retries-1) { addLog(`Fetch timeout: ${url.split('?')[0].split('/').pop()}`, 'error'); return null; } }
+  } return null;
 }
 
-// 2. SAFE MATH
 function calcEMA(arr, p) {
   if(!arr || arr.length < p) return null;
   let k = 2/(p+1), ema = arr[0];
@@ -340,120 +391,103 @@ function calcEMA(arr, p) {
 }
 function calcRSI(arr, p=14) {
   if(!arr || arr.length <= p) return 50;
-  let gains=0, losses=0;
-  for(let i=1; i<=p; i++) {
-    let diff = arr[arr.length-1-p+i] - arr[arr.length-1-p+i-1];
-    if(diff>=0) gains+=diff; else losses-=diff;
-  }
-  if(losses===0) return 100;
-  return 100 - (100 / (1 + ((gains/p)/(losses/p))));
-}
-async function fetchKlines(sym, interval, limit=250) {
-  let d = await fetchSafe(`https://api.binance.com/api/v3/klines?symbol=${sym}&interval=${interval}&limit=${limit}`);
-  if(!d) return null;
-  return { c: d.map(x=>parseFloat(x[4])), h: d.map(x=>parseFloat(x[2])), l: d.map(x=>parseFloat(x[3])) };
+  let g=0, l=0;
+  for(let i=1; i<=p; i++) { let d = arr[arr.length-1-p+i] - arr[arr.length-1-p+i-1]; if(d>=0) g+=d; else l-=d; }
+  if(l===0) return 100; return 100 - (100 / (1 + ((g/p)/(l/p))));
 }
 
-// 3. ISOLATED FETCHING
 async function fetchAll() {
-  if(isFetching) return; isFetching = true;
-  let loader = getEl('sync-status');
-  if(loader) { loader.style.borderColor = 'var(--blue)'; loader.style.borderTopColor = 'transparent'; loader.style.display = 'inline-block'; }
-  trackSession();
-
+  if(isFetching) return; isFetching = true; updateApiUI('sync'); trackSession();
   try {
     let tkr = await fetchSafe(`https://api.binance.com/api/v3/ticker/24hr?symbol=${cp}`);
     if(tkr) {
-      md.price = parseFloat(tkr.lastPrice); md.chg = parseFloat(tkr.priceChangePercent);
-      md.vol = parseFloat(tkr.volume); md.h = parseFloat(tkr.highPrice); md.l = parseFloat(tkr.lowPrice);
+      md.price = safeNum(tkr.lastPrice); md.chg = safeNum(tkr.priceChangePercent);
+      md.vol = safeNum(tkr.volume); md.h = safeNum(tkr.highPrice); md.l = safeNum(tkr.lowPrice);
       md.vola = safeDiv(md.h - md.l, md.l) * 100;
     }
 
-    fetchSafe('https://api.alternative.me/fng/').then(fng => {
-      if(fng && fng.data && getEl('fng-val')) getEl('fng-val').innerText = `${fng.data[0].value} (${fng.data[0].value_classification})`;
-    });
-
-    const [k1h, k4h, k15m] = await Promise.all([ fetchKlines(cp, '1h', 250), fetchKlines(cp, '4h', 250), fetchKlines(cp, '15m', 250) ]);
+    fetchSafe('https://api.alternative.me/fng/').then(fng => { if(fng && fng.data) setTxt('fng-val', `${fng.data[0].value} (${fng.data[0].value_classification})`); });
     
-    if(k1h && k1h.c.length >= 50) {
-      md.rsi = calcRSI(k1h.c);
-      let pHigh = Math.max(...k1h.h.slice(-50)), pLow = Math.min(...k1h.l.slice(-50));
+    // Request 250 candles for safe EMA200 calculation
+    const [k1h, k4h, k15m] = await Promise.all([ fetchSafe(`https://api.binance.com/api/v3/klines?symbol=${cp}&interval=1h&limit=250`), fetchSafe(`https://api.binance.com/api/v3/klines?symbol=${cp}&interval=4h&limit=250`), fetchSafe(`https://api.binance.com/api/v3/klines?symbol=${cp}&interval=15m&limit=250`) ]);
+    
+    let parseK = (d) => d ? d.map(x=>safeNum(x[4])) : null;
+    let c1h = parseK(k1h), c4h = parseK(k4h), c15m = parseK(k15m);
+
+    if(c1h && c1h.length >= 50) {
+      md.rsi = calcRSI(c1h);
+      let pHigh = Math.max(...k1h.slice(-50).map(x=>safeNum(x[2]))); let pLow = Math.min(...k1h.slice(-50).map(x=>safeNum(x[3])));
       md.res = isFinite(pHigh) ? pHigh : md.price; md.sup = isFinite(pLow) ? pLow : md.price;
     }
     
     let getTrend = (arr) => {
-      let e50=calcEMA(arr,50), e200=calcEMA(arr,200);
-      if(!e50 || !e200) return 'Wait Data';
-      let cur = arr[arr.length-1];
+      if(!arr || arr.length < 220) return 'Wait Data'; // Enforce strict EMA200
+      let e50=calcEMA(arr,50), e200=calcEMA(arr,200), cur=arr[arr.length-1];
       return (e50>e200 && cur>e50) ? 'Bullish' : ((e50<e200 && cur<e50) ? 'Bearish' : 'Sideways');
     };
-    md.tr['4h'] = getTrend(k4h?.c); md.tr['1h'] = getTrend(k1h?.c); md.tr['15m'] = getTrend(k15m?.c);
+    md.tr['4h'] = getTrend(c4h); md.tr['1h'] = getTrend(c1h); md.tr['15m'] = getTrend(c15m);
     
     if(md.tr['4h']==='Bullish' && md.tr['1h']==='Bullish') md.regime = 'Trending Bullish';
     else if(md.tr['4h']==='Bearish' && md.tr['1h']==='Bearish') md.regime = 'Trending Bearish';
     else if(md.vola > 5) md.regime = 'Volatile'; else md.regime = 'Sideways';
 
     localStorage.setItem('v5_md_cache', JSON.stringify(md)); 
-    updateDashboard(); runScanner();
+    updateApiUI('ok'); updateDashboard();
   } catch(e) {
-    if(loader) { loader.style.borderColor = 'var(--red)'; loader.style.borderTopColor = 'transparent'; }
-    let cache = localStorage.getItem('v5_md_cache');
-    if(cache) { md = JSON.parse(cache); updateDashboard(); }
-  } finally {
-    if(loader) loader.style.display = 'none';
-    isFetching = false;
-  }
+    updateApiUI('off'); addLog("Main API Fallback triggered.", "warn");
+    let cache = localStorage.getItem('v5_md_cache'); if(cache) { md = JSON.parse(cache); updateDashboard(); }
+  } finally { isFetching = false; }
 }
 
 function trackSession() {
-  const badge = getEl('session-badge'); if(!badge) return;
+  const b = getEl('session-badge'); if(!b) return;
   const h = new Date().getUTCHours();
-  if(h >= 0 && h < 8) { badge.innerText = "Asia"; badge.style.background = "var(--yellow)"; badge.style.color = "#000"; }
-  else if(h >= 8 && h < 13) { badge.innerText = "London"; badge.style.background = "var(--green)"; badge.style.color = "#000"; }
-  else { badge.innerText = "New York"; badge.style.background = "var(--blue)"; badge.style.color = "#fff"; }
+  if(h >= 0 && h < 8) { b.innerText="Asia"; b.style.background="var(--yellow)"; b.style.color="#000"; }
+  else if(h >= 8 && h < 13) { b.innerText="London"; b.style.background="var(--green)"; b.style.color="#000"; }
+  else { b.innerText="New York"; b.style.background="var(--blue)"; b.style.color="#fff"; }
 }
 
+// --- SCANNER V2 ---
+let isScanning = false;
 async function runScanner() {
-  const container = getEl('scanner-container'); if(!container) return;
-  let results = [];
-  for(let sym of scanPairs) {
-    let k = await fetchKlines(sym, '1h', 250);
-    if(!k || !k.c || k.c.length < 200) continue;
-    let rsi = calcRSI(k.c); let e50 = calcEMA(k.c,50) || 0; let e200 = calcEMA(k.c,200) || 0;
-    let score = 50;
-    if(e50 && e200) score += (e50>e200 ? 20 : -20);
+  if(isScanning) return; isScanning = true; setTxt('h-scan', 'Running', 'var(--blue)');
+  let container = getEl('scanner-container'), prog = getEl('scan-prog');
+  if(!container) { isScanning=false; return; }
+  
+  let results = [], success=0;
+  for(let i=0; i<scanPairs.length; i++) {
+    let sym = scanPairs[i];
+    if(prog) prog.innerText = `${i+1}/${scanPairs.length}`;
+    let k = await fetchSafe(`https://api.binance.com/api/v3/klines?symbol=${sym}&interval=1h&limit=250`);
+    if(!k || k.length < 220) continue;
+    let c = k.map(x=>safeNum(x[4]));
+    let rsi = calcRSI(c), e50 = calcEMA(c,50)||0, e200 = calcEMA(c,200)||0, cur = c[c.length-1];
+    let score = 50; success++;
+    if(e50 && e200) score += (e50>e200 && cur>e50 ? 20 : (e50<e200 && cur<e50 ? -20 : 0));
     if(rsi<30) score+=15; else if(rsi>70) score-=15;
     results.push({sym, score: Math.max(0, Math.min(100, score))});
   }
+  
   if(results.length > 0) {
     container.innerHTML = results.sort((a,b)=>b.score-a.score).map((r,i) => 
       `<div class="row" style="background:rgba(0,0,0,0.2); padding:6px; border-radius:4px;"><span class="font-bold">${i+1}. ${r.sym}</span><span style="color:${r.score>=60?'var(--green)':r.score<=40?'var(--red)':'var(--yellow)'}">${r.score}</span></div>`
     ).join('');
-  }
+    setTxt('scan-last', new Date().toLocaleTimeString('id-ID'));
+  } else { container.innerHTML = "Scanner offline/error."; addLog("Scanner failed to fetch data.", "error"); }
+  setTxt('h-scan', 'Idle', 'var(--text-muted)'); isScanning = false;
 }
 
-// 4. SAFE DOM UPDATES
+// --- DASHBOARD UI ---
 function updateDashboard() {
-  const setTxt = (id, val) => { if(getEl(id)) getEl(id).innerText = val; };
-  setTxt('m-price', md.price);
-  
-  const chgEl = getEl('m-change');
-  if(chgEl) { chgEl.innerText = `${md.chg>0?'+':''}${md.chg.toFixed(2)}%`; chgEl.style.color = md.chg>=0?'var(--green)':'var(--red)'; }
-  
-  setTxt('m-vol', Math.round(md.vol)); setTxt('m-high', md.h); setTxt('m-low', md.l);
+  setTxt('m-price', fmtPrice(md.price));
+  setTxt('m-change', `${md.chg>0?'+':''}${md.chg.toFixed(2)}%`, md.chg>=0?'var(--green)':'var(--red)');
+  setTxt('m-vol', fmtPrice(md.vol)); setTxt('m-high', fmtPrice(md.h)); setTxt('m-low', fmtPrice(md.l));
   setTxt('m-regime', md.regime); setTxt('m-vola', `${md.vola.toFixed(2)}%`);
-  setTxt('m-sup', md.sup); setTxt('m-res', md.res);
-  
-  const rsiEl = getEl('m-rsi');
-  if(rsiEl) { rsiEl.innerText = md.rsi.toFixed(1); rsiEl.style.color = md.rsi>70?'var(--red)':(md.rsi<30?'var(--green)':'var(--text-main)'); }
-  
-  const alertBox = getEl('smart-alert');
-  if(alertBox) alertBox.style.display = (md.rsi > 75 || md.rsi < 25) ? 'block' : 'none';
+  setTxt('m-sup', fmtPrice(md.sup)); setTxt('m-res', fmtPrice(md.res));
+  setTxt('m-rsi', md.rsi.toFixed(1), md.rsi>70?'var(--red)':(md.rsi<30?'var(--green)':'var(--text-main)'));
+  if(getEl('smart-alert')) getEl('smart-alert').style.display = (md.rsi > 75 || md.rsi < 25) ? 'block' : 'none';
 
-  ['4h','1h','15m'].forEach(t => {
-    let el = getEl(`trend-${t}`);
-    if(el) { el.innerText = md.tr[t]; el.style.color = md.tr[t]==='Bullish'?'var(--green)':(md.tr[t]==='Bearish'?'var(--red)':'var(--yellow)'); }
-  });
+  ['4h','1h','15m'].forEach(t => setTxt(`trend-${t}`, md.tr[t], md.tr[t]==='Bullish'?'var(--green)':(md.tr[t]==='Bearish'?'var(--red)':'var(--yellow)')));
 
   let sc = 50;
   if(md.tr['4h']==='Bullish') sc+=20; else if(md.tr['4h']==='Bearish') sc-=20;
@@ -461,240 +495,234 @@ function updateDashboard() {
   sc = Math.max(0, Math.min(100, sc));
   
   if(getEl('ds-bar')) getEl('ds-bar').style.width = `${sc}%`;
-  let st = getEl('ds-status');
-  if(st) {
-    if(sc>=70){st.innerText='🟢 BULLISH BIAS'; st.style.color='var(--green)'; if(getEl('ds-bar')) getEl('ds-bar').style.background='var(--green)';}
-    else if(sc<=30){st.innerText='🔴 BEARISH BIAS'; st.style.color='var(--red)'; if(getEl('ds-bar')) getEl('ds-bar').style.background='var(--red)';}
-    else{st.innerText='🟡 CHOPPY / WAIT'; st.style.color='var(--yellow)'; if(getEl('ds-bar')) getEl('ds-bar').style.background='var(--yellow)';}
+  let st = getEl('ds-status'), bar = getEl('ds-bar');
+  if(st && bar) {
+    if(sc>=70){st.innerText='🟢 BULLISH BIAS'; st.style.color='var(--green)'; bar.style.background='var(--green)';}
+    else if(sc<=30){st.innerText='🔴 BEARISH BIAS'; st.style.color='var(--red)'; bar.style.background='var(--red)';}
+    else{st.innerText='🟡 WAIT / CHOPPY'; st.style.color='var(--yellow)'; bar.style.background='var(--yellow)';}
   }
 }
 
-// 5. RISK MANAGEMENT & SETUP CALCULATOR
+// --- SETUP & RISK V5.2 ---
 function generateAutoSetup() {
-  if(!md.price || md.price === 0) return alert("Market Offline/Loading.");
+  if(safeNum(md.price) === 0) return alert("Market Loading...");
   let dir = md.tr['4h'] === 'Bullish' ? 'LONG' : (md.tr['4h'] === 'Bearish' ? 'SHORT' : 'WAIT');
-  if(dir==='WAIT') return alert("Trend 4H Sideways. Bahaya entry otomatis.");
+  if(dir==='WAIT') {
+    getEl('setup-warning').innerText = "Trend 4H Sideways/Data kurang. Tidak ada setup."; 
+    getEl('setup-warning').style.display = 'block'; return;
+  }
   isAutoActive = true;
   
-  let e = md.price; let risk = safeVal('t-risk-pct')/100; let rrTgt = safeVal('t-target-rr');
+  let e = safeNum(md.price); let risk = safeNum(getEl('t-risk-pct')?.value)/100; let rrTgt = safeNum(getEl('t-target-rr')?.value);
   if(risk === 0 || rrTgt === 0) return;
 
-  let sl = dir==='LONG' ? Math.min(md.sup*0.998, e*(1-risk)) : Math.max(md.res*1.002, e*(1+risk));
-  let tp = dir==='LONG' ? e+((e-sl)*rrTgt) : e-((sl-e)*rrTgt);
+  // Strict SnR Logic validation
+  let sl=0, tp=0, valid=true;
+  if(dir==='LONG') {
+    if(e <= md.sup) { sl = md.sup*0.995; } else { valid=false; }
+    tp = e+((e-sl)*rrTgt);
+  } else {
+    if(e >= md.res) { sl = md.res*1.005; } else { valid=false; }
+    tp = e-((sl-e)*rrTgt);
+  }
 
-  getEl('t-dir').value = dir; getEl('t-entry').value = e.toFixed(2);
-  getEl('t-sl').value = sl.toFixed(2); getEl('t-tp').value = tp.toFixed(2);
-  evalSetup();
+  let warn = getEl('setup-warning');
+  if(!valid && warn) {
+    warn.innerText = `Harga saat ini jauh dari ${dir==='LONG'?'Support':'Resistance'}. Setup dibatalkan sistem.`;
+    warn.style.display = 'block';
+    return;
+  }
+  if(warn) warn.style.display = 'none';
+
+  getEl('t-dir').value = dir; getEl('t-entry').value = e;
+  getEl('t-sl').value = fmtPrice(sl).replace(/,/g,''); getEl('t-tp').value = fmtPrice(tp).replace(/,/g,'');
+  evalSetup(); saveDraft();
 }
 
 function evalSetup() {
-  const dir = getEl('t-dir')?.value; const e = safeVal('t-entry'); const sl = safeVal('t-sl'); const tp = safeVal('t-tp');
-  const cap = safeVal('t-capital'); const rPct = safeVal('t-risk-pct')/100;
+  const dir = getEl('t-dir')?.value; const e = safeNum(getEl('t-entry')?.value); const sl = safeNum(getEl('t-sl')?.value); const tp = safeNum(getEl('t-tp')?.value);
+  const cap = safeNum(getEl('t-capital')?.value); const rPct = safeNum(getEl('t-risk-pct')?.value)/100;
   
-  const btnSave = getEl('btn-save-trade');
-  const warning = getEl('rm-warning');
+  const btn = getEl('btn-save-trade'), warn = getEl('rm-warning'), swarn = getEl('setup-warning');
+  if(swarn && (!e || !sl || !tp)) swarn.style.display='none';
 
-  // Modal Validation Guard
   if(cap <= 0) {
-    if(btnSave) { btnSave.disabled = true; btnSave.innerText = "Isi Modal Dulu!"; }
-    if(warning) warning.style.display = 'block';
-    if(getEl('rm-risk-nom')) getEl('rm-risk-nom').innerText = "$0";
-    if(getEl('rm-pos-size')) getEl('rm-pos-size').innerText = "$0";
-    if(getEl('rm-daily-loss')) getEl('rm-daily-loss').innerText = "$0";
-    if(getEl('rm-weekly-loss')) getEl('rm-weekly-loss').innerText = "$0";
+    if(btn) { btn.disabled = true; btn.innerText = "Modal Kosong"; }
+    if(warn) warn.style.display = 'block';
+    setTxt('rm-risk-nom', "$0"); setTxt('rm-pos-size', "$0"); setTxt('rm-daily-loss', "$0"); setTxt('rm-weekly-loss', "$0");
     return 0;
   } else {
-    if(btnSave) { btnSave.disabled = false; btnSave.innerText = "Simpan ke Jurnal"; }
-    if(warning) warning.style.display = 'none';
+    if(btn) { btn.disabled = false; btn.innerText = getEl('t-edit-id')?.value ? "Update Jurnal" : "Simpan ke Jurnal"; }
+    if(warn) warn.style.display = 'none';
   }
 
-  // RR Calc
-  const rrEl = getEl('rr-display'); let rr = 0;
-  if(e>0 && sl>0 && tp>0) {
+  let rr = 0;
+  if(e>0 && sl>0 && tp>0 && e!==sl) {
     let r = Math.abs(e-sl), w = Math.abs(tp-e);
     rr = safeDiv(w, r);
-    if(rrEl) { rrEl.innerText = `1:${rr.toFixed(2)}`; rrEl.style.color = rr>=2?'var(--green)':'var(--red)'; }
-  } else if(rrEl) rrEl.innerText = 'Invalid';
+    setTxt('rr-display', `1:${rr.toFixed(2)}`, rr>=2?'var(--green)':'var(--red)');
+    
+    // Position validation
+    if(r/e < 0.001 && swarn) { swarn.innerText="SL terlalu dekat (invalid)."; swarn.style.display='block'; }
+    else if(swarn) swarn.style.display='none';
+  } else { setTxt('rr-display', 'Invalid', 'var(--text-muted)'); }
   
-  // Advanced Risk Management Update
-  let nom = cap * rPct;
-  let dist = safeDiv(Math.abs(e-sl), e);
-  let size = dist > 0 ? safeDiv(nom, dist) : 0;
-  
-  if(getEl('rm-risk-nom')) getEl('rm-risk-nom').innerText = `$${nom.toFixed(2)}`;
-  if(getEl('rm-pos-size')) getEl('rm-pos-size').innerText = `$${size.toFixed(2)}`;
-  if(getEl('rm-daily-loss')) getEl('rm-daily-loss').innerText = `$${(nom * 3).toFixed(2)}`;
-  if(getEl('rm-weekly-loss')) getEl('rm-weekly-loss').innerText = `$${(nom * 10).toFixed(2)}`;
-
+  let nom = cap * rPct, dist = safeDiv(Math.abs(e-sl), e), size = dist > 0 ? safeDiv(nom, dist) : 0;
+  setTxt('rm-risk-nom', `$${fmtPrice(nom)}`); setTxt('rm-pos-size', `$${fmtPrice(size)}`);
+  setTxt('rm-daily-loss', `$${fmtPrice(nom*3)}`); setTxt('rm-weekly-loss', `$${fmtPrice(nom*10)}`);
   return rr;
 }
 
-// 6. SAFE TRADE SAVE & AI REVIEW
+// --- TRADE SAVE & JOURNAL PRO ---
 function saveTrade() {
-  let cap = safeVal('t-capital');
-  if(cap <= 0) return alert("Ditolak! Modal belum diisi.");
+  if(safeNum(getEl('t-capital')?.value) <= 0) return alert("Ditolak! Modal invalid.");
+  if(getEl('setup-warning')?.style.display === 'block') return alert("Setup invalid, perbaiki Entry/SL.");
 
-  const checks = ['chk-trend','chk-snr','chk-rr','chk-sl','chk-fomo'];
-  for(let id of checks) { if(getEl(id) && !getEl(id).checked) return alert("Lengkapi Trade Checklist dulu!"); }
+  const checks = ['chk-trend','chk-snr','chk-rr','chk-fomo'];
+  for(let id of checks) { if(getEl(id) && !getEl(id).checked) return alert("Lengkapi Checklist Pre-Trade!"); }
   
-  let rr = evalSetup(); if(rr<2 && rr>0) return alert("Gagal Simpan: RR kurang dari 1:2.");
+  let rr = evalSetup(); if(rr<1.9) return alert("Gagal: RR minimal 1:2.");
+  let idInput = getEl('t-edit-id'); let isEdit = idInput && idInput.value !== "";
   
-  let maxT = safeVal('set-max') || 3;
-  let today = new Date().toLocaleDateString('id-ID');
-  let tToday = trades.filter(t => t.date.includes(today)).length;
-  if(tToday >= maxT) return alert("Batas Harian Tercapai! Kontrol diri lo.");
+  if(!isEdit) {
+    let maxT = safeNum(getEl('set-max')?.value) || 3; let today = new Date().toLocaleDateString('id-ID');
+    if(trades.filter(t => t.date.includes(today)).length >= maxT) return alert("Batas Harian Tercapai!");
+  }
 
-  let dir = getEl('t-dir')?.value; let emosi = getEl('t-emosi')?.value; let out = getEl('t-outcome')?.value;
+  let dir = getEl('t-dir')?.value, emosi = getEl('t-emosi')?.value, out = getEl('t-outcome')?.value;
+  let eVal = getEl('t-entry')?.value, slVal = getEl('t-sl')?.value, tpVal = getEl('t-tp')?.value;
   
-  let aiReview = "Review: ";
-  if(out==='Loss') { aiReview += "Loss. "; if(dir !== md.tr['1h']) aiReview += "Ngelawan tren. "; if(emosi !== 'Tenang') aiReview += `Emosi (${emosi}) bikin buta. `; } 
-  else if(out==='Win') { aiReview += "Nice Win! Eksekusi sesuai SOP."; } 
-  else { aiReview = "Trade pending/BEP."; }
+  let ai = "Review: ";
+  if(out==='Loss') { ai+="Loss. "; if(dir!==md.tr['1h']) ai+="Lawan tren. "; if(emosi!=='Tenang') ai+=`Emosi (${emosi}).`; } 
+  else if(out==='Win') { ai+="Nice Win! Eksekusi sesuai SOP."; } else { ai="Trade pending/BEP."; }
 
   let tr = {
-    id: Date.now(), date: new Date().toLocaleString('id-ID'),
-    pair: cp, dir, e: getEl('t-entry')?.value,
-    sl: getEl('t-sl')?.value, tp: getEl('t-tp')?.value,
+    id: isEdit ? parseInt(idInput.value) : Date.now(),
+    date: isEdit ? trades.find(x=>x.id==parseInt(idInput.value))?.date || new Date().toLocaleString('id-ID') : new Date().toLocaleString('id-ID'),
+    pair: cp, dir, e: eVal, sl: slVal, tp: tpVal,
     emosi, alasan: getEl('t-alasan')?.value, out,
-    pnl: safeVal('t-pnl'), rr, review: aiReview
+    pnl: safeNum(getEl('t-pnl')?.value), rr, review: ai
   };
   
-  trades.unshift(tr); 
-  try { localStorage.setItem('btc_mentor_v5_data', JSON.stringify(trades)); } catch(e) { alert("Memori penuh!"); }
+  if(isEdit) { trades = trades.map(x => x.id === tr.id ? tr : x); idInput.value = ""; } 
+  else { trades.unshift(tr); }
   
-  checks.forEach(id => { if(getEl(id)) getEl(id).checked = false; });
-  alert("Jurnal tersimpan!\n" + aiReview); updateAnalytics();
+  saveStorage(); checks.forEach(id => { if(getEl(id)) getEl(id).checked=false; });
+  alert("Jurnal tersimpan!\n" + ai); resetForm(); renderJournal(); updateAnalytics();
 }
 
-// 7. ANALYTICS & EQUITIES (Driven by Modal Input)
+function renderJournal() {
+  let cont = getEl('history-container'), term = getEl('f-search')?.value.toUpperCase()||"", outF = getEl('f-out')?.value||"All";
+  if(!cont) return;
+  let filtered = trades.filter(t => t.pair.includes(term) && (outF==='All' || t.out===outF));
+  if(filtered.length===0) { cont.innerHTML = "<div class='text-center text-muted text-sm'>Tidak ada data.</div>"; return; }
+  
+  cont.innerHTML = filtered.slice(0,20).map(t => {
+    let col = t.out==='Win'?'var(--green)':(t.out==='Loss'?'var(--red)':'var(--text-muted)');
+    return `<div class="history-card ${t.out==='Win'?'win':(t.out==='Loss'?'loss':'')}">
+      <div class="row font-bold"><span style="color:${t.dir==='LONG'?'var(--green)':'var(--red)'}">${t.dir} ${t.pair}</span> <span class="text-muted text-sm">${t.date.split(',')[0]}</span></div>
+      <div class="grid-2 text-sm font-mono mt-1 mb-2"><div>E: ${fmtPrice(t.e)}</div> <div>PnL: <span style="color:${col}">${t.pnl}%</span></div></div>
+      <div class="text-sm text-muted" style="font-style:italic;">"${t.review}"</div>
+      <div class="mt-2 text-right">
+        <button class="btn-sm btn-outline" style="width:auto; padding:4px 10px;" onclick="editTrade(${t.id})">Edit</button>
+        <button class="btn-sm btn-danger" style="width:auto; padding:4px 10px;" onclick="delTrade(${t.id})">Del</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function editTrade(id) {
+  let t = trades.find(x=>x.id===id); if(!t) return;
+  getEl('t-edit-id').value = t.id; getEl('t-dir').value = t.dir; getEl('t-entry').value = t.e;
+  getEl('t-sl').value = t.sl; getEl('t-tp').value = t.tp; getEl('t-emosi').value = t.emosi;
+  getEl('t-alasan').value = t.alasan; getEl('t-outcome').value = t.out; getEl('t-pnl').value = t.pnl;
+  evalSetup(); window.scrollTo(0,0);
+}
+function delTrade(id) { if(confirm("Hapus trade ini?")) { trades=trades.filter(t=>t.id!==id); saveStorage(); renderJournal(); updateAnalytics(); } }
+function resetForm() {
+  ['t-entry','t-sl','t-tp','t-pnl','t-edit-id'].forEach(id=>{if(getEl(id)) getEl(id).value="";});
+  getEl('btn-save-trade').innerText = "Simpan ke Jurnal"; evalSetup(); saveDraft();
+}
+
+// --- ANALYTICS & EQUITIES (Optimized Chart Update) ---
 function updateAnalytics() {
   let fin = trades.filter(t=>['Win','Loss','BEP'].includes(t.out));
-  let w = fin.filter(t=>t.out==='Win').length; 
-  let wr = fin.length>0 ? (w/fin.length)*100 : 0;
+  let w = fin.filter(t=>t.out==='Win').length; let wr = fin.length>0 ? (w/fin.length)*100 : 0;
   
-  let baseCap = safeVal('t-capital'); 
-  let chartCap = baseCap <= 0 ? 0.0001 : baseCap; // Math protection
-  
+  let cap = safeNum(getEl('t-capital')?.value); let chartCap = cap <= 0 ? 0.0001 : cap; 
   let mode = getEl('set-dd')?.value || 'Fixed';
   let bal=chartCap, peak=chartCap, mDd=0; let eq=[chartCap];
   
   fin.slice().reverse().forEach(t => {
-    let p = bal * (t.pnl/100); bal += p;
-    if(bal>peak) peak=bal;
+    bal += bal * (safeNum(t.pnl)/100); if(bal>peak) peak=bal;
     let dd = mode==='Compound' ? (peak>0?((peak-bal)/peak)*100:0) : ((chartCap-bal)/chartCap)*100;
     if(dd>mDd) mDd=dd; eq.push(bal);
   });
 
-  const setTxt = (id, val) => { if(getEl(id)) getEl(id).innerText = val; };
-  setTxt('eq-baseline', `$${chartCap.toFixed(2)}`);
-  setTxt('c-start-bal', `$${chartCap.toFixed(2)}`);
-  setTxt('c-curr-bal', `$${bal.toFixed(2)}`); 
-  setTxt('c-peak-bal', `$${peak.toFixed(2)}`);
+  setTxt('eq-baseline', `$${fmtPrice(chartCap)}`); setTxt('c-start-bal', `$${fmtPrice(chartCap)}`);
+  setTxt('c-curr-bal', `$${fmtPrice(bal)}`); setTxt('c-peak-bal', `$${fmtPrice(peak)}`);
   
-  // Cross Sync with Dashboard DD Stats
-  setTxt('current-dd', `${Math.max(0, mode==='Compound' ? (peak>0?((peak-bal)/peak)*100:0) : ((chartCap-bal)/chartCap)*100).toFixed(2)}%`);
-  setTxt('max-dd', `${mDd.toFixed(2)}%`);
+  let cdd = Math.max(0, mode==='Compound' ? (peak>0?((peak-bal)/peak)*100:0) : ((chartCap-bal)/chartCap)*100);
+  let ddCol = cdd >= 10 ? 'var(--red)' : (cdd >= 5 ? 'var(--yellow)' : 'var(--green)');
+  setTxt('current-dd', `${cdd.toFixed(2)}%`, ddCol); setTxt('max-dd', `${mDd.toFixed(2)}%`);
+  setTxt('c-wr', `${wr.toFixed(0)}%`); setTxt('c-net', `${(((bal-chartCap)/chartCap)*100).toFixed(2)}%`);
   
-  setTxt('c-wr', `${wr.toFixed(0)}%`); 
-  setTxt('c-net', `${(((bal-chartCap)/chartCap)*100).toFixed(2)}%`);
-  
-  let avgRR = fin.length>0 ? fin.reduce((s,t)=>s+(t.rr||0),0)/fin.length : 0;
+  let avgRR = fin.length>0 ? fin.reduce((s,t)=>s+(safeNum(t.rr)),0)/fin.length : 0;
   setTxt('c-rr', `1:${avgRR.toFixed(1)}`);
 
-  let streak=0, sType='None';
-  for(let i=0; i<fin.length; i++) {
-    if(i===0) { sType=fin[i].out; streak=1; }
-    else if(fin[i].out === sType) streak++; else break;
-  }
-  let strEl = getEl('daily-streak');
-  if(strEl) {
-    if(sType==='Win' && streak>1){ strEl.innerText = `🔥 Win Streak ${streak}`; strEl.className='badge badge-green'; }
-    else if(sType==='Loss' && streak>1){ strEl.innerText = `⚠️ Loss Streak ${streak}`; strEl.className='badge badge-red'; }
-    else { strEl.innerText = 'No Active Streak'; strEl.className='badge'; }
-  }
-
-  let dScore = wr - (mDd*1.5);
-  let grade='D', col='var(--red)';
-  if(dScore>80){grade='A+'; col='#a855f7';}else if(dScore>60){grade='A'; col='var(--green)';}else if(dScore>40){grade='B'; col='var(--yellow)';}else if(dScore>20){grade='C'; col='var(--text-main)';}
-  if(getEl('daily-score')){ getEl('daily-score').innerText = fin.length>0?grade:'-'; getEl('daily-score').style.color = col; }
-
-  // CHART FIX
-  const ctxEl = getEl('equityChart');
+  // CHART ENGINE V5.2 (Update only, no memory leak)
+  let ctxEl = getEl('equityChart');
   if(ctxEl) {
-    let ctx = ctxEl.getContext('2d');
-    if(eqChart) { eqChart.destroy(); }
-    eqChart = new Chart(ctx, { type:'line', data:{labels:eq.map((_,i)=>i), datasets:[{data:eq, borderColor:'#fcd535', borderWidth:2, pointRadius:0, fill:true, backgroundColor:'rgba(252,213,53,0.1)'}]}, options:{responsive:true, plugins:{legend:{display:false}}, scales:{x:{display:false},y:{grid:{color:'rgba(255,255,255,0.05)'}}}}});
+    if(eqChart) { eqChart.data.labels = eq.map((_,i)=>i); eqChart.data.datasets[0].data = eq; eqChart.update('none'); } 
+    else {
+      eqChart = new Chart(ctxEl.getContext('2d'), { type:'line', data:{labels:eq.map((_,i)=>i), datasets:[{data:eq, borderColor:'#2962ff', borderWidth:2, pointRadius:0, fill:true, backgroundColor:'rgba(41, 98, 255, 0.15)'}]}, options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{display:false},y:{grid:{color:'rgba(255,255,255,0.05)'}}}}});
+    }
   }
 
   if(fin.length >= 5 && getEl('playbook-container')) {
     let pMap = {}; fin.forEach(t=>{ if(!pMap[t.alasan]) pMap[t.alasan]={w:0,l:0}; if(t.out==='Win') pMap[t.alasan].w++; else pMap[t.alasan].l++; });
     let best = Object.entries(pMap).sort((a,b)=> safeDiv(b[1].w, b[1].w+b[1].l) - safeDiv(a[1].w, a[1].w+a[1].l) )[0];
     if(best) {
-      getEl('playbook-container').innerHTML = `
-        <div style="background:rgba(0,0,0,0.3); padding:10px; border-radius:8px; margin-bottom:8px; border-left:3px solid var(--green)">✅ Fokus eksekusi setup <strong>${best[0]}</strong>.</div>
-        <div style="background:rgba(0,0,0,0.3); padding:10px; border-radius:8px; border-left:3px solid var(--red)">❌ Jauhi market kalau emosi mulai goyah atau kena 2 Loss Streak.</div>
-      `;
+      getEl('playbook-container').innerHTML = `<div style="background:rgba(0,0,0,0.2); padding:8px; border-radius:6px; margin-bottom:6px; border-left:3px solid var(--green)">✅ Fokus setup <strong>${best[0]}</strong>.</div><div style="background:rgba(0,0,0,0.2); padding:8px; border-radius:6px; border-left:3px solid var(--red)">❌ Jauhi market saat emosi labil.</div>`;
     }
   }
-
-  let hHtml = '';
-  trades.slice(0, 15).forEach(t => {
-    let oCol = t.out==='Win'?'var(--green)':(t.out==='Loss'?'var(--red)':'var(--text-muted)');
-    hHtml += `<div class="history-card ${t.out==='Win'?'win':(t.out==='Loss'?'loss':'')}">
-      <div class="row font-bold"><span style="color:${t.dir==='LONG'?'var(--green)':'var(--red)'}">${t.dir} ${t.pair}</span> <span class="text-muted text-sm">${t.date.split(',')[0]}</span></div>
-      <div class="grid-2 text-sm font-mono mt-1 mb-2"><div>E: ${t.e}</div> <div>PnL: <span style="color:${oCol}">${t.pnl}%</span></div></div>
-      <div class="text-sm text-muted" style="font-style:italic;">"${t.review}"</div>
-      <button class="btn-sm btn-danger mt-2" onclick="delTrade(${t.id})">Del</button>
-    </div>`;
-  });
-  if(getEl('history-container')) getEl('history-container').innerHTML = hHtml;
 }
 
-function delTrade(id) { trades=trades.filter(t=>t.id!==id); try{localStorage.setItem('btc_mentor_v5_data', JSON.stringify(trades));}catch(e){} updateAnalytics(); }
-
-// 8. SAFE REPLAY SIMULATOR
-let rIdx = 0;
+// --- SAFE REPLAY SIMULATOR ---
 async function startReplay() {
   const btn = getEl('btn-start-replay'); if(btn) btn.innerText = 'Loading...';
   try {
     let d = await fetchSafe(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1h&limit=250`);
-    if(!d || d.length < 100) throw new Error("Data limit");
-    rIdx = Math.floor(Math.random() * 100) + 100; replayData = d;
+    if(!d || d.length < 220) throw new Error("Data limit");
+    rIdx = Math.floor(Math.random() * 80) + 120; replayData = d;
     
-    if(btn) btn.style.display = 'none';
-    if(getEl('replay-actions')) getEl('replay-actions').style.display = 'grid';
+    if(btn) btn.style.display = 'none'; if(getEl('replay-actions')) getEl('replay-actions').style.display = 'grid';
     if(getEl('replay-result')) getEl('replay-result').innerText = '';
     
-    let hist = replayData.slice(rIdx-50, rIdx); let c = hist.map(x=>parseFloat(x[4]));
-    let e50 = calcEMA(c,50), e200 = calcEMA(c,200);
-    let tr = (e50 && e200 && e50 > e200) ? 'Bullish' : 'Bearish';
+    let c = replayData.slice(rIdx-100, rIdx).map(x=>safeNum(x[4]));
+    let e50 = calcEMA(c,50), e200 = calcEMA(c,200), tr = (e50 && e200 && e50 > e200) ? 'Bullish' : 'Bearish';
     if(getEl('replay-context')) getEl('replay-context').innerHTML = `Trend (EMA): <span class="${tr==='Bullish'?'text-green':'text-red'} font-bold">${tr}</span><br>RSI: ${calcRSI(c).toFixed(1)}`;
-  } catch(e) { 
-    alert("Replay gagal memuat."); if(btn) { btn.innerText = 'Start Replay'; btn.style.display = 'block'; }
-  }
+  } catch(e) { alert("Replay error/timeout."); if(btn) { btn.innerText = 'Start Replay'; btn.style.display = 'block'; } }
 }
-
 function guessReplay(g) {
-  let entry = parseFloat(replayData[rIdx-1][4]);
-  let fut = replayData.slice(rIdx, rIdx+10);
+  let e = safeNum(replayData[rIdx-1][4]), fut = replayData.slice(rIdx, rIdx+10);
   if(!fut || fut.length === 0) return; 
-  
-  let mx = Math.max(...fut.map(x=>parseFloat(x[2]))); let mn = Math.min(...fut.map(x=>parseFloat(x[3])));
-  let pL = ((mx-entry)/entry)*100; let pS = ((entry-mn)/entry)*100;
-  
-  let res = g==='WAIT' ? "Aman. (Netral)" : (g==='LONG' ? (pL>1?`✅ WIN (Naik ke ${mx})`:`❌ LOSS`) : (pS>1?`✅ WIN (Turun ke ${mn})`:`❌ LOSS`));
-  if(getEl('replay-result')) getEl('replay-result').innerText = res;
-  if(getEl('replay-actions')) getEl('replay-actions').style.display = 'none'; 
+  let mx = Math.max(...fut.map(x=>safeNum(x[2]))), mn = Math.min(...fut.map(x=>safeNum(x[3])));
+  let pL = ((mx-e)/e)*100, pS = ((e-mn)/e)*100;
+  let res = g==='WAIT' ? "Aman. (Netral)" : (g==='LONG' ? (pL>1?`✅ WIN (+${pL.toFixed(1)}%)`:`❌ LOSS`) : (pS>1?`✅ WIN (+${pS.toFixed(1)}%)`:`❌ LOSS`));
+  setTxt('replay-result', res); getEl('replay-actions').style.display = 'none'; 
   const btn = getEl('btn-start-replay'); if(btn) { btn.style.display = 'block'; btn.innerText = 'Main Lagi'; }
 }
 
+// Data Ops
 function exportData() { let e=document.createElement('a'); e.href="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(trades)); e.download="jurnal_v5.json"; document.body.appendChild(e); e.click(); e.remove(); }
-function importData(e) { let r=new FileReader(); r.onload=e=>{try{trades=JSON.parse(e.target.result); localStorage.setItem('btc_mentor_v5_data', JSON.stringify(trades)); updateAnalytics(); alert("Import sukses!");}catch(err){alert("Format salah!");}}; r.readAsText(e.target.files[0]); }
-function resetData() { if(confirm("Hapus Semua?")) { trades=[]; try{localStorage.setItem('btc_mentor_v5_data', '[]');}catch(e){} updateAnalytics(); } }
+function importData(e) { let r=new FileReader(); r.onload=ev=>{try{trades=JSON.parse(ev.target.result); saveStorage(); renderJournal(); updateAnalytics(); alert("Import sukses!");}catch(err){alert("Format salah!");}}; r.readAsText(e.target.files[0]); }
+function resetData() { if(confirm("Hapus Semua Trade?")) { trades=[]; saveStorage(); renderJournal(); updateAnalytics(); } }
 
-// Init Eval for Persisted Capital & Loop
-evalSetup();
-setInterval(fetchAll, 10000); fetchAll(); updateAnalytics();
+// --- BOOTSTRAP ---
+initStorage(); evalSetup(); renderJournal();
+setInterval(fetchAll, 15000); setInterval(runScanner, 45000);
+fetchAll(); setTimeout(runScanner, 2000);
 </script>
 </body>
 </html>
