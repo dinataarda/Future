@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Mentor Trading Pribadi - V5.2 PRO</title>
+<title>Mentor Trading Pribadi - V5.3 PRO</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
+/* --- V5.3 POLISHED CSS --- */
 :root {
   --bg-dark: #0b0e11; --bg-card: rgba(30, 35, 41, 0.7); --bg-input: rgba(43, 49, 57, 0.9);
   --text-main: #eaecef; --text-muted: #848e9c;
@@ -20,39 +21,66 @@ body { background-color: var(--bg-dark); color: var(--text-main); font-family: v
 .container { display: flex; flex-direction: column; gap: 14px; max-width: 600px; margin: 0 auto; overflow-x: hidden; }
 .card { background: var(--bg-card); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 12px; padding: 14px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); }
 h2 { font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 8px;}
+
+/* UTILITIES (FIXED) */
+.font-bold { font-weight: bold !important; } .font-mono { font-family: var(--font-mono); } 
+.text-sm { font-size: 0.8rem; color: var(--text-muted); } .text-center { text-align: center; } .text-right { text-align: right; }
 .text-green { color: var(--green) !important; } .text-red { color: var(--red) !important; } .text-yellow { color: var(--yellow) !important; } .text-blue { color: var(--blue) !important; }
-.font-mono { font-family: var(--font-mono); } .text-sm { font-size: 0.8rem; color: var(--text-muted); } .text-center { text-align: center; } .text-right { text-align: right; }
+.mt-1 { margin-top: 4px; } .mt-2 { margin-top: 8px; } .mb-1 { margin-bottom: 4px; } .mb-2 { margin-bottom: 8px; }
+
 .badge { padding: 4px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; display: inline-block; text-transform: uppercase; }
 .badge-green { background: var(--green-dim); color: var(--green); } .badge-red { background: var(--red-dim); color: var(--red); } .badge-yellow { background: var(--yellow-dim); color: var(--yellow); }
 .row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; } .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-.grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; } .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; } .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+
 input, select, textarea { width: 100%; background: var(--bg-input); border: 1px solid var(--border); color: var(--text-main); padding: 10px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.95rem; margin-top: 4px; outline: none; transition: border 0.2s; }
 input:focus, select:focus { border-color: var(--blue); } label { font-size: 0.8rem; color: var(--text-muted); display:block; margin-bottom:2px; } .input-group { margin-bottom: 10px; }
+
 button { width: 100%; padding: 12px; border: none; border-radius: 6px; font-weight: bold; font-size: 0.95rem; cursor: pointer; transition: opacity 0.2s, transform 0.1s; font-family: var(--font-main); }
 button:active { transform: scale(0.98); } button:disabled { background: var(--bg-input); color: var(--text-muted); cursor: not-allowed; opacity: 0.5; transform: none; }
 .btn-primary { background: var(--blue); color: white; } .btn-green { background: var(--green); color: #000; } .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); } .btn-sm { padding: 6px; font-size: 0.8rem; } .btn-danger { background: rgba(246, 70, 93, 0.15); color: var(--red); border: 1px solid var(--red); }
+
 .price-display { font-size: 2rem; font-weight: 700; margin: 4px 0; letter-spacing: -0.5px; }
 .progress-container { width: 100%; height: 6px; background: var(--bg-input); border-radius: 3px; overflow: hidden; margin: 10px 0; } .progress-bar { height: 100%; transition: width 0.3s ease; }
 .mini-card { background: rgba(0,0,0,0.2); padding: 8px; border-radius: 6px; text-align: center; border: 1px solid var(--border); } .mini-card .val { font-size: 1rem; font-weight: bold; font-family: var(--font-mono); margin-top: 2px;}
 .history-card { background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-left: 3px solid var(--border); border-radius: 6px; padding: 10px; margin-bottom: 10px; font-size: 0.85rem; }
 .history-card.win { border-left-color: var(--green); } .history-card.loss { border-left-color: var(--red); }
+
 .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
 .dot-green { background: var(--green); box-shadow: 0 0 5px var(--green); } .dot-yellow { background: var(--yellow); } .dot-red { background: var(--red); }
 .tab-content { display: none; animation: fadeIn 0.2s ease; } .tab-content.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
 .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(11, 14, 17, 0.95); backdrop-filter: blur(10px); display: flex; justify-content: space-around; padding: 8px 0 16px 0; border-top: 1px solid var(--border); z-index: 1000; }
 .nav-btn { background: none; border: none; color: var(--text-muted); font-size: 0.7rem; padding: 4px; width: auto; font-family: var(--font-main); display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .nav-btn.active { color: var(--yellow); } .nav-btn svg { width: 20px; height: 20px; fill: currentColor; }
+
 .checklist-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 6px; border: 1px solid var(--border); font-size:0.85rem;} .checklist-item input { width: auto; margin: 0; transform: scale(1.1); accent-color: var(--blue); }
 .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
 .pair-selector { background: transparent; border: none; color: var(--text-main); font-weight: bold; font-size: 1.2rem; outline: none; padding: 0; width: auto; }
 .alert-box { background: rgba(246, 70, 93, 0.15); border: 1px solid var(--red); padding: 10px; border-radius: 6px; color: var(--red); font-weight: bold; text-align: center; margin-bottom: 12px; display: none; font-size: 0.85rem;}
 .log-entry { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
 .health-item { display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 4px; font-family: var(--font-mono); }
+
+/* Custom Toast & Modal UI */
+#toast-container { position: fixed; top: 20px; right: 50%; transform: translateX(50%); z-index: 9999; display: flex; flex-direction: column; gap: 8px; width: 90%; max-width: 400px; pointer-events: none; }
+.toast { padding: 12px 16px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; box-shadow: 0 4px 15px rgba(0,0,0,0.5); opacity: 0; transform: translateY(-10px); transition: all 0.3s ease; text-align: center; }
+#confirm-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 10000; justify-content: center; align-items: center; backdrop-filter: blur(4px); }
 </style>
 </head>
 <body>
+
+<div id="toast-container"></div>
+<div id="confirm-modal">
+  <div class="card" style="width: 90%; max-width: 320px; text-align: center; border-color:var(--text-muted);">
+    <h3 id="modal-title" class="mb-2">Konfirmasi</h3>
+    <p id="modal-desc" class="text-sm text-muted mb-2">Apakah Anda yakin?</p>
+    <div class="grid-2 mt-2">
+      <button class="btn-outline" onclick="closeModal()">Batal</button>
+      <button class="btn-primary" id="modal-confirm-btn">Ya, Lanjutkan</button>
+    </div>
+  </div>
+</div>
 
 <div class="container">
 <div class="top-nav">
@@ -100,7 +128,7 @@ button:active { transform: scale(0.98); } button:disabled { background: var(--bg
   <div class="card">
     <h2>Smart Decision Panel</h2>
     <div class="progress-container"><div class="progress-bar" id="ds-bar" style="width: 0%; background: var(--text-muted);"></div></div>
-    <div class="text-center" style="font-weight: bold; font-size: 1.1rem; margin-top:8px;" id="ds-status">ANALYZING...</div>
+    <div class="text-center font-bold mt-2" style="font-size: 1.1rem;" id="ds-status">ANALYZING...</div>
     <div class="grid-3 text-sm font-mono mt-2" style="border-top: 1px solid var(--border); padding-top: 8px;">
       <div class="text-center">4H: <span id="trend-4h" class="font-bold">--</span></div>
       <div class="text-center">1H: <span id="trend-1h" class="font-bold">--</span></div>
@@ -112,7 +140,7 @@ button:active { transform: scale(0.98); } button:disabled { background: var(--bg
     <div class="card">
       <h2>System Health</h2>
       <div class="health-item"><span>API</span><span id="h-api" class="text-yellow">Updating</span></div>
-      <div class="health-item"><span>Storage</span><span id="h-store" class="text-green">OK v5.2</span></div>
+      <div class="health-item"><span>Storage</span><span id="h-store" class="text-green">OK v5.3</span></div>
       <div class="health-item"><span>Scan</span><span id="h-scan" class="text-muted">Idle</span></div>
     </div>
     <div class="card text-center">
@@ -123,7 +151,7 @@ button:active { transform: scale(0.98); } button:disabled { background: var(--bg
   </div>
 
   <div class="card">
-    <h2>Multi-Pair Scanner V2 <span id="scan-prog" class="text-sm font-mono text-muted">0/0</span></h2>
+    <h2>Scanner V2 <span id="scan-prog" class="text-sm font-mono text-muted">0/0</span></h2>
     <div id="scanner-container" class="font-mono text-sm">Menunggu scan...</div>
     <div class="text-right text-muted text-sm font-mono mt-2" style="font-size:0.65rem;">Last: <span id="scan-last">--:--:--</span></div>
   </div>
@@ -152,7 +180,7 @@ button:active { transform: scale(0.98); } button:disabled { background: var(--bg
     <div class="input-group"><label>Target RR (Auto Setup)</label><select id="t-target-rr" onchange="triggerEval()"><option value="2">1:2</option><option value="3" selected>1:3</option><option value="4">1:4</option></select></div>
     <button class="btn-primary" style="margin-bottom: 12px; background:var(--blue);" onclick="generateAutoSetup()">🧠 SMART AUTO SETUP</button>
 
-    <div class="grid-2" style="margin-bottom: 8px;">
+    <div class="grid-2 mb-1">
       <div class="input-group"><label>Direction</label><select id="t-dir" onchange="triggerEval()"><option value="LONG">🟢 LONG</option><option value="SHORT">🔴 SHORT</option></select></div>
       <div class="input-group"><label>Entry Price</label><input type="number" id="t-entry" oninput="triggerEval()"></div>
     </div>
@@ -161,7 +189,7 @@ button:active { transform: scale(0.98); } button:disabled { background: var(--bg
       <div class="input-group"><label>Take Profit (TP)</label><input type="number" id="t-tp" oninput="triggerEval()"></div>
     </div>
 
-    <div class="mini-card" style="margin: 10px 0;"><div class="row" style="margin: 0;"><span>Risk / Reward Ratio:</span><span id="rr-display" class="font-mono font-bold">--</span></div></div>
+    <div class="mini-card mt-2 mb-2"><div class="row" style="margin: 0;"><span>Risk / Reward Ratio:</span><span id="rr-display" class="font-mono font-bold">--</span></div></div>
     <div id="setup-warning" class="text-red text-center font-bold text-sm mb-2" style="display:none;"></div>
 
     <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border);">
@@ -184,7 +212,7 @@ button:active { transform: scale(0.98); } button:disabled { background: var(--bg
         <div class="input-group"><label>Real PnL (%)</label><input type="number" id="t-pnl" placeholder="0" oninput="saveDraft()"></div>
       </div>
       <input type="hidden" id="t-edit-id" value="">
-      <button id="btn-save-trade" class="btn-green" onclick="saveTrade()">Simpan ke Jurnal</button>
+      <button id="btn-save-trade" class="btn-green mt-2" onclick="saveTrade()">Simpan ke Jurnal</button>
     </div>
   </div>
   
@@ -230,21 +258,21 @@ button:active { transform: scale(0.98); } button:disabled { background: var(--bg
       <button class="btn-red btn-sm" style="background:var(--red);color:white;" onclick="guessReplay('SHORT')">SHORT</button>
       <button class="btn-outline btn-sm" onclick="guessReplay('WAIT')">WAIT</button>
     </div>
-    <button class="btn-primary" id="btn-start-replay" onclick="startReplay()">Start Replay</button>
+    <button class="btn-primary mt-2" id="btn-start-replay" onclick="startReplay()">Start Replay</button>
     <div id="replay-result" class="mt-2 text-center font-bold font-mono"></div>
   </div>
 </div>
 
 <div id="tab-settings" class="tab-content">
   <div class="card">
-    <h2>Pengaturan Sistem V5.2</h2>
+    <h2>Pengaturan Sistem V5.3</h2>
     <div class="input-group"><label>Drawdown Mode</label><select id="set-dd"><option value="Fixed">Fixed (Modal Awal)</option><option value="Compound">Compound (Dari Peak)</option></select></div>
     <div class="input-group"><label>Max Trade Harian</label><input type="number" id="set-max" value="3"></div>
     <div style="border-top: 1px solid var(--border); padding-top: 12px; margin-top: 12px; display:flex; flex-direction:column; gap:8px;">
       <button onclick="exportData()" class="btn-outline btn-sm">Export Backup (JSON)</button>
       <button onclick="getEl('import-file').click()" class="btn-outline btn-sm">Import Recovery (JSON)</button>
       <input type="file" id="import-file" style="display:none" onchange="importData(event)">
-      <button onclick="resetData()" class="btn-danger btn-sm">Wipe Data Jurnal</button>
+      <button onclick="resetDataPrompt()" class="btn-danger btn-sm">Wipe Data Jurnal</button>
     </div>
   </div>
   
@@ -267,54 +295,75 @@ button:active { transform: scale(0.98); } button:disabled { background: var(--bg
 
 <script>
 // ==========================================
-// V5.2 PRODUCTION ENGINE - HARDENED
+// V5.3 PRODUCTION ENGINE - ARCHITECT GRADE
 // ==========================================
-const DB_VERSION = "5.2";
+const DB_VERSION = "5.3";
 let cp = 'BTCUSDT';
 let md = { price:0, chg:0, vol:0, h:0, l:0, rsi:50, sup:0, res:0, vola:0, regime:'Loading', tr:{'15m':'-', '1h':'-', '4h':'-'} };
 let trades = []; let logs = []; let eqChart = null; 
 let isFetching = false; let isAutoActive = false;
+let rIdx = 0; let replayData = []; // Explicitly declared to prevent implicit global crash
 const scanPairs = ['BTCUSDT','ETHUSDT','SOLUSDT','BNBUSDT','SUIUSDT','XRPUSDT'];
+
+// --- GLOBAL ERROR HANDLING ---
+window.addEventListener('error', e => addLog(`JS Error: ${e.message}`, 'error'));
+window.addEventListener('unhandledrejection', e => addLog(`Promise Error: ${e.reason}`, 'error'));
 
 // --- SAFE DOM HELPERS ---
 const getEl = id => document.getElementById(id);
 const setTxt = (id, v, c=null) => { let e = getEl(id); if(e){ e.innerText = v; if(c) e.style.color = c; } };
 const safeNum = v => { let n = parseFloat(v); return isNaN(n) || !isFinite(n) ? 0 : n; };
+const safeDiv = (n, d) => { let nd = safeNum(d); return nd === 0 ? 0 : safeNum(n)/nd; };
 const fmtPrice = p => new Intl.NumberFormat('en-US', { minimumFractionDigits: p<1?4:2, maximumFractionDigits: p<1?6:2 }).format(safeNum(p));
 
-// --- SYSTEM LOGS RING BUFFER ---
-function addLog(msg, type='info') {
-  let time = new Date().toLocaleTimeString('id-ID');
-  logs.unshift(`[${time}] ${type.toUpperCase()}: ${msg}`);
-  if(logs.length > 20) logs.pop();
-  let html = logs.map(l => `<div class="log-entry">${l}</div>`).join('');
-  if(getEl('sys-logs')) getEl('sys-logs').innerHTML = html;
+// --- UX OVERLAYS (MODAL & TOAST) ---
+function showToast(msg, type='info') {
+  const c = getEl('toast-container'); if(!c) return;
+  const t = document.createElement('div'); t.className = 'toast';
+  let bg = type === 'error' ? 'var(--red)' : (type === 'success' ? 'var(--green)' : 'var(--blue)');
+  let col = type === 'success' ? '#000' : '#fff';
+  t.style.cssText = `background:${bg}; color:${col};`; t.innerText = msg;
+  c.appendChild(t);
+  requestAnimationFrame(() => { t.style.opacity = '1'; t.style.transform = 'translateY(0)'; });
+  setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateY(-10px)'; setTimeout(() => t.remove(), 300); }, 2500);
 }
 
-// --- STORAGE SYSTEM (Auto-Repair & Versioning) ---
+let confirmAction = null;
+function showModal(title, desc, onConfirm, btnText="Ya, Lanjutkan", btnClass="btn-primary") {
+  getEl('modal-title').innerText = title; getEl('modal-desc').innerText = desc;
+  let btn = getEl('modal-confirm-btn');
+  btn.innerText = btnText; btn.className = btnClass;
+  confirmAction = onConfirm; getEl('confirm-modal').style.display = 'flex';
+}
+function closeModal() { getEl('confirm-modal').style.display = 'none'; confirmAction = null; }
+getEl('modal-confirm-btn')?.addEventListener('click', () => { if(confirmAction) confirmAction(); closeModal(); });
+
+// --- SYSTEM LOGS ---
+function addLog(msg, type='info') {
+  let t = new Date().toLocaleTimeString('id-ID'); logs.unshift(`[${t}] ${type.toUpperCase()}: ${msg}`);
+  if(logs.length > 20) logs.pop();
+  if(getEl('sys-logs')) getEl('sys-logs').innerHTML = logs.map(l => `<div class="log-entry">${l}</div>`).join('');
+}
+
+// --- STORAGE SYSTEM ---
 function initStorage() {
   try {
     let raw = localStorage.getItem('v5_core_data');
     if(raw) {
       let data = JSON.parse(raw);
-      if(data.version !== DB_VERSION) addLog(`Migrating from ${data.version||'old'} to ${DB_VERSION}`, 'warn');
+      if(data.version !== DB_VERSION) addLog(`Migrated to v${DB_VERSION}`, 'warn');
       trades = Array.isArray(data.trades) ? data.trades : [];
     } else {
-      // Fallback old v5 data
-      let old = JSON.parse(localStorage.getItem('btc_mentor_v5_data'));
-      if(old && Array.isArray(old)) trades = old;
-      addLog("Initial setup/Migration successful.");
+      let old = JSON.parse(localStorage.getItem('btc_mentor_v5_data') || "[]");
+      if(Array.isArray(old)) trades = old;
     }
-  } catch(e) { 
-    addLog("Storage corrupt! Starting fresh.", 'error'); trades = []; 
-    setTxt('h-store', 'Error', 'var(--red)');
-  }
+  } catch(e) { addLog("Storage corrupt! Wipe forced.", 'error'); trades = []; setTxt('h-store', 'Error', 'var(--red)'); }
   saveStorage();
   
-  getEl('t-capital').value = safeNum(localStorage.getItem('v5_capital')) || 100;
-  getEl('t-risk-pct').value = safeNum(localStorage.getItem('v5_risk')) || 1;
-  getEl('set-dd').value = localStorage.getItem('v5_dd') || 'Fixed';
-  getEl('set-max').value = safeNum(localStorage.getItem('v5_max')) || 3;
+  if(getEl('t-capital')) getEl('t-capital').value = safeNum(localStorage.getItem('v5_capital')) || 100;
+  if(getEl('t-risk-pct')) getEl('t-risk-pct').value = safeNum(localStorage.getItem('v5_risk')) || 1;
+  if(getEl('set-dd')) getEl('set-dd').value = localStorage.getItem('v5_dd') || 'Fixed';
+  if(getEl('set-max')) getEl('set-max').value = safeNum(localStorage.getItem('v5_max')) || 3;
   loadDraft();
 }
 
@@ -324,31 +373,29 @@ function saveStorage() {
 }
 
 function saveSettings() {
-  localStorage.setItem('v5_capital', safeNum(getEl('t-capital').value));
-  localStorage.setItem('v5_risk', safeNum(getEl('t-risk-pct').value));
+  localStorage.setItem('v5_capital', safeNum(getEl('t-capital')?.value));
+  localStorage.setItem('v5_risk', safeNum(getEl('t-risk-pct')?.value));
   updateAnalytics(); 
 }
 
 ['set-dd', 'set-max'].forEach(id => getEl(id)?.addEventListener('change', e => {
-  localStorage.setItem(e.target.id.replace('set-', 'v5_'), e.target.value); updateAnalytics();
+  localStorage.setItem(e.target.id.replace('set-', 'v5_'), e.target.value); showToast("Settings tersimpan", "success"); updateAnalytics();
 }));
 
 // --- AUTO SAVE DRAFT ---
 function saveDraft() {
   let draft = {
-    rr: getEl('t-target-rr')?.value, dir: getEl('t-dir')?.value,
-    e: getEl('t-entry')?.value, sl: getEl('t-sl')?.value, tp: getEl('t-tp')?.value,
-    emosi: getEl('t-emosi')?.value, alasan: getEl('t-alasan')?.value
+    rr: getEl('t-target-rr')?.value, dir: getEl('t-dir')?.value, e: getEl('t-entry')?.value, 
+    sl: getEl('t-sl')?.value, tp: getEl('t-tp')?.value, emosi: getEl('t-emosi')?.value, alasan: getEl('t-alasan')?.value
   };
   localStorage.setItem('v5_draft', JSON.stringify(draft));
 }
 function loadDraft() {
   try {
-    let d = JSON.parse(localStorage.getItem('v5_draft'));
-    if(!d) return;
-    if(d.rr) getEl('t-target-rr').value = d.rr; if(d.dir) getEl('t-dir').value = d.dir;
-    if(d.e) getEl('t-entry').value = d.e; if(d.sl) getEl('t-sl').value = d.sl; if(d.tp) getEl('t-tp').value = d.tp;
-    if(d.emosi) getEl('t-emosi').value = d.emosi; if(d.alasan) getEl('t-alasan').value = d.alasan;
+    let d = JSON.parse(localStorage.getItem('v5_draft')); if(!d) return;
+    if(d.rr && getEl('t-target-rr')) getEl('t-target-rr').value = d.rr; if(d.dir && getEl('t-dir')) getEl('t-dir').value = d.dir;
+    if(d.e && getEl('t-entry')) getEl('t-entry').value = d.e; if(d.sl && getEl('t-sl')) getEl('t-sl').value = d.sl; if(d.tp && getEl('t-tp')) getEl('t-tp').value = d.tp;
+    if(d.emosi && getEl('t-emosi')) getEl('t-emosi').value = d.emosi; if(d.alasan && getEl('t-alasan')) getEl('t-alasan').value = d.alasan;
   } catch(e){}
 }
 function triggerEval() { saveSettings(); saveDraft(); if(isAutoActive) generateAutoSetup(); evalSetup(); }
@@ -361,25 +408,25 @@ function switchTab(id) {
   if(id === 'coach') updateAnalytics();
   if(id === 'jurnal') { evalSetup(); renderJournal(); }
 }
-function changePair() { cp = getEl('pair-selector').value; addLog(`Pair changed to ${cp}`); fetchAll(); }
+function changePair() { cp = getEl('pair-selector').value; addLog(`Pair: ${cp}`); showToast(`Pair diganti ke ${cp}`); fetchAll(); }
 
-// --- API ENGINE (Retry & Fallback) ---
+// --- API ENGINE ---
 function updateApiUI(status) {
   let dot = getEl('api-dot'), txt = getEl('api-text'), h = getEl('h-api');
   if(!dot || !txt || !h) return;
   dot.className = 'status-dot';
   if(status === 'ok') { dot.classList.add('dot-green'); txt.innerText = 'Connected'; h.innerText = 'Online'; h.style.color = 'var(--green)'; }
-  else if(status === 'sync') { dot.classList.add('dot-yellow'); txt.innerText = 'Syncing...'; h.innerText = 'Updating'; h.style.color = 'var(--yellow)'; }
-  else { dot.classList.add('dot-red'); txt.innerText = 'Offline'; h.innerText = 'Offline (Cache)'; h.style.color = 'var(--red)'; }
+  else if(status === 'sync') { dot.classList.add('dot-yellow'); txt.innerText = 'Syncing'; h.innerText = 'Updating'; h.style.color = 'var(--yellow)'; }
+  else { dot.classList.add('dot-red'); txt.innerText = 'Offline'; h.innerText = 'Cache'; h.style.color = 'var(--red)'; }
 }
 
 async function fetchSafe(url, retries=2) {
   for(let i=0; i<retries; i++) {
-    const c = new AbortController(); const id = setTimeout(() => c.abort(), 5000);
+    const c = new AbortController(); const id = setTimeout(() => c.abort(), 6000);
     try {
       const res = await fetch(url, { signal: c.signal }); clearTimeout(id);
       if(res.ok) return await res.json();
-    } catch(e) { clearTimeout(id); if(i===retries-1) { addLog(`Fetch timeout: ${url.split('?')[0].split('/').pop()}`, 'error'); return null; } }
+    } catch(e) { clearTimeout(id); if(i===retries-1) { addLog(`Timeout: ${url.split('?')[0].split('/').pop()}`, 'error'); return null; } }
   } return null;
 }
 
@@ -408,7 +455,6 @@ async function fetchAll() {
 
     fetchSafe('https://api.alternative.me/fng/').then(fng => { if(fng && fng.data) setTxt('fng-val', `${fng.data[0].value} (${fng.data[0].value_classification})`); });
     
-    // Request 250 candles for safe EMA200 calculation
     const [k1h, k4h, k15m] = await Promise.all([ fetchSafe(`https://api.binance.com/api/v3/klines?symbol=${cp}&interval=1h&limit=250`), fetchSafe(`https://api.binance.com/api/v3/klines?symbol=${cp}&interval=4h&limit=250`), fetchSafe(`https://api.binance.com/api/v3/klines?symbol=${cp}&interval=15m&limit=250`) ]);
     
     let parseK = (d) => d ? d.map(x=>safeNum(x[4])) : null;
@@ -421,7 +467,7 @@ async function fetchAll() {
     }
     
     let getTrend = (arr) => {
-      if(!arr || arr.length < 220) return 'Wait Data'; // Enforce strict EMA200
+      if(!arr || arr.length < 220) return 'Wait Data'; 
       let e50=calcEMA(arr,50), e200=calcEMA(arr,200), cur=arr[arr.length-1];
       return (e50>e200 && cur>e50) ? 'Bullish' : ((e50<e200 && cur<e50) ? 'Bearish' : 'Sideways');
     };
@@ -434,7 +480,7 @@ async function fetchAll() {
     localStorage.setItem('v5_md_cache', JSON.stringify(md)); 
     updateApiUI('ok'); updateDashboard();
   } catch(e) {
-    updateApiUI('off'); addLog("Main API Fallback triggered.", "warn");
+    updateApiUI('off'); addLog("API Fallback", "warn");
     let cache = localStorage.getItem('v5_md_cache'); if(cache) { md = JSON.parse(cache); updateDashboard(); }
   } finally { isFetching = false; }
 }
@@ -447,7 +493,7 @@ function trackSession() {
   else { b.innerText="New York"; b.style.background="var(--blue)"; b.style.color="#fff"; }
 }
 
-// --- SCANNER V2 ---
+// --- SCANNER V2 (ANTI-SPAM) ---
 let isScanning = false;
 async function runScanner() {
   if(isScanning) return; isScanning = true; setTxt('h-scan', 'Running', 'var(--blue)');
@@ -459,13 +505,15 @@ async function runScanner() {
     let sym = scanPairs[i];
     if(prog) prog.innerText = `${i+1}/${scanPairs.length}`;
     let k = await fetchSafe(`https://api.binance.com/api/v3/klines?symbol=${sym}&interval=1h&limit=250`);
-    if(!k || k.length < 220) continue;
-    let c = k.map(x=>safeNum(x[4]));
-    let rsi = calcRSI(c), e50 = calcEMA(c,50)||0, e200 = calcEMA(c,200)||0, cur = c[c.length-1];
-    let score = 50; success++;
-    if(e50 && e200) score += (e50>e200 && cur>e50 ? 20 : (e50<e200 && cur<e50 ? -20 : 0));
-    if(rsi<30) score+=15; else if(rsi>70) score-=15;
-    results.push({sym, score: Math.max(0, Math.min(100, score))});
+    if(k && k.length >= 220) {
+      let c = k.map(x=>safeNum(x[4]));
+      let rsi = calcRSI(c), e50 = calcEMA(c,50)||0, e200 = calcEMA(c,200)||0, cur = c[c.length-1];
+      let score = 50; success++;
+      if(e50 && e200) score += (e50>e200 && cur>e50 ? 20 : (e50<e200 && cur<e50 ? -20 : 0));
+      if(rsi<30) score+=15; else if(rsi>70) score-=15;
+      results.push({sym, score: Math.max(0, Math.min(100, score))});
+    }
+    await new Promise(r => setTimeout(r, 200)); // Delay to prevent Rate Limit (429)
   }
   
   if(results.length > 0) {
@@ -473,7 +521,7 @@ async function runScanner() {
       `<div class="row" style="background:rgba(0,0,0,0.2); padding:6px; border-radius:4px;"><span class="font-bold">${i+1}. ${r.sym}</span><span style="color:${r.score>=60?'var(--green)':r.score<=40?'var(--red)':'var(--yellow)'}">${r.score}</span></div>`
     ).join('');
     setTxt('scan-last', new Date().toLocaleTimeString('id-ID'));
-  } else { container.innerHTML = "Scanner offline/error."; addLog("Scanner failed to fetch data.", "error"); }
+  } else { container.innerHTML = "Scanner offline."; addLog("Scan failed.", "error"); }
   setTxt('h-scan', 'Idle', 'var(--text-muted)'); isScanning = false;
 }
 
@@ -503,12 +551,12 @@ function updateDashboard() {
   }
 }
 
-// --- SETUP & RISK V5.2 ---
+// --- SETUP & RISK V5.3 ---
 function generateAutoSetup() {
-  if(safeNum(md.price) === 0) return alert("Market Loading...");
+  if(safeNum(md.price) === 0) return showToast("Market Offline/Loading", "error");
   let dir = md.tr['4h'] === 'Bullish' ? 'LONG' : (md.tr['4h'] === 'Bearish' ? 'SHORT' : 'WAIT');
   if(dir==='WAIT') {
-    getEl('setup-warning').innerText = "Trend 4H Sideways/Data kurang. Tidak ada setup."; 
+    getEl('setup-warning').innerText = "Trend 4H Sideways. Tidak ada setup."; 
     getEl('setup-warning').style.display = 'block'; return;
   }
   isAutoActive = true;
@@ -516,7 +564,6 @@ function generateAutoSetup() {
   let e = safeNum(md.price); let risk = safeNum(getEl('t-risk-pct')?.value)/100; let rrTgt = safeNum(getEl('t-target-rr')?.value);
   if(risk === 0 || rrTgt === 0) return;
 
-  // Strict SnR Logic validation
   let sl=0, tp=0, valid=true;
   if(dir==='LONG') {
     if(e <= md.sup) { sl = md.sup*0.995; } else { valid=false; }
@@ -528,14 +575,13 @@ function generateAutoSetup() {
 
   let warn = getEl('setup-warning');
   if(!valid && warn) {
-    warn.innerText = `Harga saat ini jauh dari ${dir==='LONG'?'Support':'Resistance'}. Setup dibatalkan sistem.`;
-    warn.style.display = 'block';
-    return;
+    warn.innerText = `Harga jauh dari ${dir==='LONG'?'Support':'Resistance'}. Setup dibatalkan.`;
+    warn.style.display = 'block'; return;
   }
   if(warn) warn.style.display = 'none';
 
   getEl('t-dir').value = dir; getEl('t-entry').value = e;
-  getEl('t-sl').value = fmtPrice(sl).replace(/,/g,''); getEl('t-tp').value = fmtPrice(tp).replace(/,/g,'');
+  getEl('t-sl').value = sl.toFixed(4); getEl('t-tp').value = tp.toFixed(4); // Use unformatted for inputs
   evalSetup(); saveDraft();
 }
 
@@ -561,8 +607,6 @@ function evalSetup() {
     let r = Math.abs(e-sl), w = Math.abs(tp-e);
     rr = safeDiv(w, r);
     setTxt('rr-display', `1:${rr.toFixed(2)}`, rr>=2?'var(--green)':'var(--red)');
-    
-    // Position validation
     if(r/e < 0.001 && swarn) { swarn.innerText="SL terlalu dekat (invalid)."; swarn.style.display='block'; }
     else if(swarn) swarn.style.display='none';
   } else { setTxt('rr-display', 'Invalid', 'var(--text-muted)'); }
@@ -575,18 +619,18 @@ function evalSetup() {
 
 // --- TRADE SAVE & JOURNAL PRO ---
 function saveTrade() {
-  if(safeNum(getEl('t-capital')?.value) <= 0) return alert("Ditolak! Modal invalid.");
-  if(getEl('setup-warning')?.style.display === 'block') return alert("Setup invalid, perbaiki Entry/SL.");
+  if(safeNum(getEl('t-capital')?.value) <= 0) return showToast("Ditolak! Modal invalid.", "error");
+  if(getEl('setup-warning')?.style.display === 'block') return showToast("Setup invalid!", "error");
 
   const checks = ['chk-trend','chk-snr','chk-rr','chk-fomo'];
-  for(let id of checks) { if(getEl(id) && !getEl(id).checked) return alert("Lengkapi Checklist Pre-Trade!"); }
+  for(let id of checks) { if(getEl(id) && !getEl(id).checked) return showToast("Lengkapi Checklist!", "error"); }
   
-  let rr = evalSetup(); if(rr<1.9) return alert("Gagal: RR minimal 1:2.");
+  let rr = evalSetup(); if(rr<1.9) return showToast("Gagal: RR minimal 1:2.", "error");
   let idInput = getEl('t-edit-id'); let isEdit = idInput && idInput.value !== "";
   
   if(!isEdit) {
     let maxT = safeNum(getEl('set-max')?.value) || 3; let today = new Date().toLocaleDateString('id-ID');
-    if(trades.filter(t => t.date.includes(today)).length >= maxT) return alert("Batas Harian Tercapai!");
+    if(trades.filter(t => t.date.includes(today)).length >= maxT) return showToast("Batas Harian Tercapai!", "error");
   }
 
   let dir = getEl('t-dir')?.value, emosi = getEl('t-emosi')?.value, out = getEl('t-outcome')?.value;
@@ -598,7 +642,7 @@ function saveTrade() {
 
   let tr = {
     id: isEdit ? parseInt(idInput.value) : Date.now(),
-    date: isEdit ? trades.find(x=>x.id==parseInt(idInput.value))?.date || new Date().toLocaleString('id-ID') : new Date().toLocaleString('id-ID'),
+    date: isEdit ? trades.find(x=>x.id===parseInt(idInput.value))?.date || new Date().toLocaleString('id-ID') : new Date().toLocaleString('id-ID'),
     pair: cp, dir, e: eVal, sl: slVal, tp: tpVal,
     emosi, alasan: getEl('t-alasan')?.value, out,
     pnl: safeNum(getEl('t-pnl')?.value), rr, review: ai
@@ -608,14 +652,15 @@ function saveTrade() {
   else { trades.unshift(tr); }
   
   saveStorage(); checks.forEach(id => { if(getEl(id)) getEl(id).checked=false; });
-  alert("Jurnal tersimpan!\n" + ai); resetForm(); renderJournal(); updateAnalytics();
+  showToast(isEdit ? "Jurnal diupdate!" : "Jurnal tersimpan!", "success"); 
+  resetForm(); renderJournal(); updateAnalytics();
 }
 
 function renderJournal() {
   let cont = getEl('history-container'), term = getEl('f-search')?.value.toUpperCase()||"", outF = getEl('f-out')?.value||"All";
   if(!cont) return;
   let filtered = trades.filter(t => t.pair.includes(term) && (outF==='All' || t.out===outF));
-  if(filtered.length===0) { cont.innerHTML = "<div class='text-center text-muted text-sm'>Tidak ada data.</div>"; return; }
+  if(filtered.length===0) { cont.innerHTML = "<div class='text-center text-muted text-sm' style='padding:20px;'>Data tidak ditemukan.</div>"; return; }
   
   cont.innerHTML = filtered.slice(0,20).map(t => {
     let col = t.out==='Win'?'var(--green)':(t.out==='Loss'?'var(--red)':'var(--text-muted)');
@@ -625,7 +670,7 @@ function renderJournal() {
       <div class="text-sm text-muted" style="font-style:italic;">"${t.review}"</div>
       <div class="mt-2 text-right">
         <button class="btn-sm btn-outline" style="width:auto; padding:4px 10px;" onclick="editTrade(${t.id})">Edit</button>
-        <button class="btn-sm btn-danger" style="width:auto; padding:4px 10px;" onclick="delTrade(${t.id})">Del</button>
+        <button class="btn-sm btn-danger" style="width:auto; padding:4px 10px;" onclick="delTradePrompt(${t.id})">Del</button>
       </div>
     </div>`;
   }).join('');
@@ -638,10 +683,14 @@ function editTrade(id) {
   getEl('t-alasan').value = t.alasan; getEl('t-outcome').value = t.out; getEl('t-pnl').value = t.pnl;
   evalSetup(); window.scrollTo(0,0);
 }
-function delTrade(id) { if(confirm("Hapus trade ini?")) { trades=trades.filter(t=>t.id!==id); saveStorage(); renderJournal(); updateAnalytics(); } }
+function delTradePrompt(id) {
+  showModal("Hapus Jurnal", "Trade ini akan dihapus permanen.", () => {
+    trades = trades.filter(t=>t.id!==id); saveStorage(); renderJournal(); updateAnalytics(); showToast("Terhapus.", "success");
+  }, "Ya, Hapus", "btn-danger");
+}
 function resetForm() {
   ['t-entry','t-sl','t-tp','t-pnl','t-edit-id'].forEach(id=>{if(getEl(id)) getEl(id).value="";});
-  getEl('btn-save-trade').innerText = "Simpan ke Jurnal"; evalSetup(); saveDraft();
+  if(getEl('btn-save-trade')) getEl('btn-save-trade').innerText = "Simpan ke Jurnal"; evalSetup(); saveDraft();
 }
 
 // --- ANALYTICS & EQUITIES (Optimized Chart Update) ---
@@ -670,7 +719,7 @@ function updateAnalytics() {
   let avgRR = fin.length>0 ? fin.reduce((s,t)=>s+(safeNum(t.rr)),0)/fin.length : 0;
   setTxt('c-rr', `1:${avgRR.toFixed(1)}`);
 
-  // CHART ENGINE V5.2 (Update only, no memory leak)
+  // CHART ENGINE V5.3 (Zero Memory Leak)
   let ctxEl = getEl('equityChart');
   if(ctxEl) {
     if(eqChart) { eqChart.data.labels = eq.map((_,i)=>i); eqChart.data.datasets[0].data = eq; eqChart.update('none'); } 
@@ -688,22 +737,24 @@ function updateAnalytics() {
   }
 }
 
-// --- SAFE REPLAY SIMULATOR ---
+// --- SAFE REPLAY SIMULATOR (FIXED EMA200 BUG) ---
 async function startReplay() {
   const btn = getEl('btn-start-replay'); if(btn) btn.innerText = 'Loading...';
   try {
-    let d = await fetchSafe(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1h&limit=250`);
-    if(!d || d.length < 220) throw new Error("Data limit");
-    rIdx = Math.floor(Math.random() * 80) + 120; replayData = d;
+    let d = await fetchSafe(`https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1h&limit=500`);
+    if(!d || d.length < 300) throw new Error("Data API limit");
+    rIdx = Math.floor(Math.random() * 80) + 220; replayData = d;
     
     if(btn) btn.style.display = 'none'; if(getEl('replay-actions')) getEl('replay-actions').style.display = 'grid';
     if(getEl('replay-result')) getEl('replay-result').innerText = '';
     
-    let c = replayData.slice(rIdx-100, rIdx).map(x=>safeNum(x[4]));
+    // Slice exactly 250 to allow EMA200 calculation to succeed!
+    let c = replayData.slice(rIdx-250, rIdx).map(x=>safeNum(x[4]));
     let e50 = calcEMA(c,50), e200 = calcEMA(c,200), tr = (e50 && e200 && e50 > e200) ? 'Bullish' : 'Bearish';
     if(getEl('replay-context')) getEl('replay-context').innerHTML = `Trend (EMA): <span class="${tr==='Bullish'?'text-green':'text-red'} font-bold">${tr}</span><br>RSI: ${calcRSI(c).toFixed(1)}`;
-  } catch(e) { alert("Replay error/timeout."); if(btn) { btn.innerText = 'Start Replay'; btn.style.display = 'block'; } }
+  } catch(e) { showToast("Replay error/timeout.", "error"); if(btn) { btn.innerText = 'Start Replay'; btn.style.display = 'block'; } }
 }
+
 function guessReplay(g) {
   let e = safeNum(replayData[rIdx-1][4]), fut = replayData.slice(rIdx, rIdx+10);
   if(!fut || fut.length === 0) return; 
@@ -716,8 +767,12 @@ function guessReplay(g) {
 
 // Data Ops
 function exportData() { let e=document.createElement('a'); e.href="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(trades)); e.download="jurnal_v5.json"; document.body.appendChild(e); e.click(); e.remove(); }
-function importData(e) { let r=new FileReader(); r.onload=ev=>{try{trades=JSON.parse(ev.target.result); saveStorage(); renderJournal(); updateAnalytics(); alert("Import sukses!");}catch(err){alert("Format salah!");}}; r.readAsText(e.target.files[0]); }
-function resetData() { if(confirm("Hapus Semua Trade?")) { trades=[]; saveStorage(); renderJournal(); updateAnalytics(); } }
+function importData(e) { let r=new FileReader(); r.onload=ev=>{try{trades=JSON.parse(ev.target.result); saveStorage(); renderJournal(); updateAnalytics(); showToast("Import sukses!", "success");}catch(err){showToast("Format salah!", "error");}}; r.readAsText(e.target.files[0]); }
+function resetDataPrompt() {
+  showModal("Wipe Data Jurnal", "Seluruh data riwayat trading akan terhapus. Yakin?", () => {
+    trades=[]; saveStorage(); renderJournal(); updateAnalytics(); showToast("Data dihapus.", "success");
+  }, "Ya, Hapus Semua", "btn-danger");
+}
 
 // --- BOOTSTRAP ---
 initStorage(); evalSetup(); renderJournal();
